@@ -1,0 +1,201 @@
+/** Header **/
+header {
+  /* min-height: 5em; */
+  padding-left: 1em;
+  background-color: #FAFAFB;
+  border-bottom: 1.4px solid #bbc0c4;
+}
+
+#brand h2 {
+  text-decoration: none;
+  font-size: 1.4em;
+  color: black;
+  float: left;
+  margin: 0;
+  padding-top: 0.6em;
+}
+
+#brand span {
+  font-weight: normal;
+  padding-right: 0.2em;
+  border-right: 0.07em solid #242729;
+}
+
+#h-search input {
+  margin: 0.8em 0 1em 1em;
+  width: 20%;
+  height: 25px;
+  padding-left: 10px;
+  border-radius: 0.4em;
+}
+
+
+#h-search nav {
+  float: right;
+  padding: 1em;
+  margin-right: 2em;
+}
+
+header li {
+  float: right;
+  padding: 0.5em;
+  margin-right: 1em;
+}
+
+header li a {
+  color: black;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: regular;
+  /* border: 2px solid #D6D9DC; */
+}
+
+header li a:hover {
+  font-weight: bold;
+}
+
+header #btn-search:hover {
+  color: #1FBFB6;
+  font-weight: bold;
+}
+
+#btn-search {
+  width: 3%;
+  background-color: #848d95;
+  color: black;
+  border-radius: 3px;
+  border: none;
+  padding: 8px;
+  margin: 2px 0;
+  cursor: pointer;
+}
+
+/* Sticky header effect Reference: https://www.w3schools.com */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + main {
+  padding-top: 55px;
+}
+
+#showcase {
+  height: 350px;
+  background: url(../img/stackflow.jpg) no-repeat 0 -100px;
+  background-size: 100%;
+}
+
+/**showcase writeup */
+aside {
+  width: 30%;
+  font-size: 1.3em;
+  padding: 0.2em 0 2em 4em;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.822);
+  opacity: inherit;
+}
+
+.h-content {
+  display: grid;
+  grid-gap: 2px;
+  grid-template: repeat(1, 80px) / repeat(12, 1fr);
+  border: 2px solid #D6D9DC;
+  background-color: white;
+  border-radius: 4px;
+  margin: 3em 5em 0.5em 5em; 
+}
+
+.content-container {
+  display: grid;
+  grid-gap: 2px;
+  grid-template: repeat(1,40px) / repeat(12, 1fr);
+  border: 0.5px solid #D6D9DC;
+  background-color: white;
+  border-radius: 3px;
+  border-bottom: 0.5px solid grey;
+  margin: 0 5em 0 5em;
+}
+
+#content-header {
+  grid-column: 1 / 5;
+  margin: 8px;
+  text-align: center;
+}
+
+#ask {
+  grid-column: 11 / -1;
+  text-align: center;
+  margin: 0.5em;
+}
+
+#ask button {
+  font: bold 13px Nunito, Helvetica, Arial, sans-serif;
+  background-color: #4700cc;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.votes {
+  grid-column: 2 / 4;
+  text-align: center;
+  padding-top: 1em;
+  margin: 0 3px 0 0;
+  font-size:18px;
+  color: #848d95;
+}
+
+.answers {
+  grid-column: 4 / 6;
+  text-align: center;
+  padding-top: 1em;
+  margin: 0 3px 0 0;
+  font-size:18px;
+  color: #848d95;
+}
+
+.ques-details {
+  grid-column: 7 / -1;
+  justify-content: center;
+}
+
+.ques-details h3 a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+.who-asked {
+  grid-column: 9 / -1;
+  text-align: center;
+}
+
+.who-asked a {
+  text-decoration: none;
+  color: #848d95;
+}
+
+.quote {
+  margin: 0;
+  padding-top: 0;
+  border: 0;
+  font: inherit;
+  font-size: 11px;
+  vertical-align: baseline;
+}
+
+/**Footer*/
+footer {
+  padding: 3px;
+  margin-top: 5%;
+  color: #848d95;
+  background-color: #242729;
+  text-align: center;
+  position: relative;
+}
