@@ -1,3 +1,6 @@
+/**
+ * sticky header function
+ */
 const header = document.getElementById("header");
 const sticky = header.offsetTop;
 
@@ -10,3 +13,5 @@ const myFunction= ()=> {
 }
 
 window.onscroll = () => myFunction();
+
+/**Modal box function */
