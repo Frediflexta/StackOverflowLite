@@ -369,6 +369,8 @@ aside {
   margin: 1em;
 }
 
+
+/*** Answering questions*/
 #ans-container {
   display: grid;
   grid-gap: 2px;
@@ -393,6 +395,11 @@ aside {
   padding: 0;
   border-bottom: 1.4px solid #bbc0c4;
 }
+
+.answer {
+  border-bottom: 1.4px solid #bbc0c4;
+}
+
 section .ans-votes-container {
   display: grid;
   grid-gap: 2px;
@@ -403,7 +410,7 @@ section .ans-votes-container {
 .post-text {
   /* border-bottom: 1.4px solid #bbc0c4;   */
   margin-left: 1em;  
-  justify-content: left;
+  justify-content: center; 
 }
 
 .ans-votes {
@@ -419,6 +426,29 @@ section .ans-votes-container {
 
 .ans-body {
   margin: 0.5em;
+}
+
+/*profile summarry and details*/
+#profile-container {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid rgb(228, 231, 235);
+  background-color: white;
+  border-radius: 4px;
+  margin: 3em 5em 0.5em 5em;
+}
+
+#ques-et-answers {
+  margin: 1em;
+  border-radius: 5px;
+  background-color: #848d95;
+  width: 80%;
+  height: 45%;
+}
+
+#ques-et-answers p a {
+  text-decoration: none;
 }
 
 /**Footer*/

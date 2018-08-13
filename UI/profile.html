@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="CSS/basic.css">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="./CSS/web-fonts-with-css/css/fontawesome-all.min.css">
+  <title>StackOverflowLite | Welcome</title>
+</head>
+<body>
+  <header id="header">
+    <div id="h-container">
+      <div id="brand">
+        <a href="homepage.html"><h2>StackOverflow<span>Lite</span></h2></a>
+      </div>
+      <div id="h-search">
+        <input type="text" class="in-details" placeholder="Search using keyword...">
+        <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        <nav>
+          <ul>
+            <li><a href="index.html">Logout</a></li>
+            <li><a href="profile.html">Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- <section id="showcase"> -->
+      <!-- background image-->
+      <!-- <img src="./img/stackflow.jpg" alt="">
+      <aside>
+        <h1>Learn, Share, Build</h1>
+        <p>Each month, over millions of developers come to StackOverflowLite to learn, share their knowledge, and build their collaborative relationships.</p>
+        <p>Join a growing community developers.</p>
+      </aside>
+    </section> -->
+    <section id=profile-container>
+      <form action="#">
+        <div class="form-field">
+          <div class="label-username">
+            <label for="display-name" class="display">Username</label>
+          </div>
+          <div class="in-username">
+            <input type="text" name="inline-display-name" value="Frediflexta" required>
+          </div>
+          <div class="label-email">
+            <label for="display-email" class="display">Email</label>
+          </div>
+          <div class="in-email">
+            <input type="email" name="inline-email" value="you@emaple.com" required>
+          </div>
+          <div class="label-password">
+            <label for="display-password" class="display">Change Password</label>
+          </div>
+          <div class="in-password">
+            <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
+          </div>
+          <div class="label-password">
+            <label for="display-password" class="display">Confirm Password</label>
+          </div>
+          <div class="in-password">
+            <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
+          </div>
+          <div class="btn-login">
+            <button id="save">Save</button>
+          </div>
+        </div>
+        </form>
+        <!-- <div id="ques-et-answers">
+          <div>
+            <h3><b>Questions</b></h3>
+          </div>
+          <div class="user-ques">
+            <p>You have asked <span>3</span><a href="userquestion.html"> questions</a></p>
+          </div>
+          <div>
+            <h3><b>Answers</b></h3>
+          </div>
+          <div class="user-ans">
+            <p>You have <a href="useranswer.html">answered </a><span>4</span> questions</p>
+          </div>
+        </div> -->
+      </section>
+  </main>
+  <footer>
+    <p>StackOverflowLite&copy; 2018</p>
+  </footer>
+  <script src="./js/main.js"></script>
+</body>
+</html>
