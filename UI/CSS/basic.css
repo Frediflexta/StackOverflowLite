@@ -2,7 +2,8 @@ html, body {
   background: url(../img/stackflow.jpg);
   margin: 0px;
   padding: 0px;
-  background-color: #e2e7ee;
+  /* background-color: #e2e7ee; */
+  color: #08083A;
   font-family: Nunito, Helvetica, Arial, sans-serif;
 }
 

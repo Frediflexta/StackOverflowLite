@@ -9,7 +9,6 @@ header {
 #brand h2 {
   text-decoration: none;
   font-size: 1.4em;
-  color: black;
   float: left;
   margin: 0;
   padding-top: 0.6em;
@@ -18,7 +17,7 @@ header {
 #brand span {
   font-weight: normal;
   padding-right: 0.2em;
-  border-right: 0.07em solid #242729;
+  border-right: 0.07em solid #08083A;
 }
 
 #h-search input {
@@ -139,9 +138,10 @@ aside {
   margin: 0.5em;
 }
 
-#ask button {
+#ask button{
   font: bold 13px Nunito, Helvetica, Arial, sans-serif;
-  background-color: #4700cc;
+  background-color: #08083A;
+  color: white;
   padding: 12px;
   margin-top: 15px;
   border: none;
@@ -149,10 +149,15 @@ aside {
   cursor: pointer;
 }
 
+#ask a {
+  text-decoration: none;
+  color: white;
+}
+
 .votes {
   grid-column: 2 / 4;
   text-align: center;
-  padding-top: 1em;
+  padding-top: 3em;
   margin: 0 3px 0 0;
   font-size:18px;
   color: #595b5e;
@@ -161,7 +166,7 @@ aside {
 .answers {
   grid-column: 4 / 6;
   text-align: center;
-  padding-top: 1em;
+  padding-top: 3em;
   margin: 0 3px 0 0;
   font-size:18px;
   color: #595b5e;
@@ -274,7 +279,6 @@ aside {
   text-align: center;
   background-color: white;
   border-radius: 4px;
-  /* border: 0.5px solid grey; */
 }
 
 .btn-login button {
@@ -282,7 +286,6 @@ aside {
   background-color: #4700cc;
   padding: 12px;
   margin-top: 15px;
-  justify-items: auto;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -298,6 +301,72 @@ aside {
   text-decoration: none;
 }
 
+
+/*asking questions*/
+#ques-container {
+  display: grid;
+  grid-gap: 2px;
+  grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+  border: 0.5px solid #D6D9DC;
+  background-color: white;
+  border-radius: 3px;
+  border-bottom: 0.5px solid grey;
+  min-height: 50%;;
+  margin: 2em 5em 2em 5em;
+  padding: 1em;
+}
+
+.ques-body {
+  grid-column: 1 / 2;
+  margin: 0.5em 0 1em 0.5em;
+  font-weight: bold;
+}
+
+#post-ques .post {
+  font: bold 12px Nunito, Helvetica, Arial, sans-serif;
+  background-color: #848d95;
+  color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#ques-header {
+  margin-bottom: 1em;
+}
+
+.ques-title input {
+  margin: 1em 12em 1em 0;
+  width: 80%;
+  line-height: 1.3;
+  font-size: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  height: 18px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.body textarea {
+  margin: 1em 12em 1em 0;
+  width: 80%;
+  font-size: 100%;
+  padding: 8px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.how-to {
+  grid-column: 2 / -1;
+  border-radius: 5px;
+  background-color: #848d95;
+}
+
+.how-to p , h3{
+  margin: 1em;
+}
+
 /**Footer*/
 #login-footer{
   padding: 3px;
@@ -309,6 +378,18 @@ aside {
   bottom: 0;
   width: 100%;
 }
+
+#question-footer {
+  padding: 3px;
+  margin-top: 5%;
+  color: #848d95;
+  background-color: #242729;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 footer {
   padding: 3px;
   margin-top: 5%;
