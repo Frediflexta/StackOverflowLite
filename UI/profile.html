@@ -36,54 +36,57 @@
         <p>Each month, over millions of developers come to StackOverflowLite to learn, share their knowledge, and build their collaborative relationships.</p>
         <p>Join a growing community developers.</p>
       </aside>
+      Resource gotten from W3 schools!
+      https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_open
     </section> -->
     <section id=profile-container>
-      <form action="#">
-        <div class="form-field">
-          <div class="label-username">
-            <label for="display-name" class="display">Username</label>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Profile')" id="defaultOpen">Profile</button>
+        <button class="tablinks" onclick="openTab(event, 'Questions')">Questions</button>
+        <button class="tablinks" onclick="openTab(event, 'Answers')">Answers</button>
+      </div>
+      <div id="Profile" class="tabcontent">
+        <form action="#">
+          <div class="form-field">
+            <div class="label-username">
+              <label for="display-name" class="display">Username</label>
+            </div>
+            <div class="in-username">
+              <input type="text" name="inline-display-name" value="Frediflexta" required>
+            </div>
+            <div class="label-email">
+              <label for="display-email" class="display">Email</label>
+            </div>
+            <div class="in-email">
+              <input type="email" name="inline-email" value="you@emaple.com" required>
+            </div>
+            <div class="label-password">
+              <label for="display-password" class="display">Change Password</label>
+            </div>
+            <div class="in-password">
+              <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
+            </div>
+            <div class="label-password">
+              <label for="display-password" class="display">Confirm Password</label>
+            </div>
+            <div class="in-password">
+              <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
+            </div>
+            <div id="btn-save">
+              <button>Save</button>
+            </div>
           </div>
-          <div class="in-username">
-            <input type="text" name="inline-display-name" value="Frediflexta" required>
-          </div>
-          <div class="label-email">
-            <label for="display-email" class="display">Email</label>
-          </div>
-          <div class="in-email">
-            <input type="email" name="inline-email" value="you@emaple.com" required>
-          </div>
-          <div class="label-password">
-            <label for="display-password" class="display">Change Password</label>
-          </div>
-          <div class="in-password">
-            <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
-          </div>
-          <div class="label-password">
-            <label for="display-password" class="display">Confirm Password</label>
-          </div>
-          <div class="in-password">
-            <input type="password" name="inline-password" value="*******" minlength="6" maxlength="12" required>
-          </div>
-          <div class="btn-login">
-            <button id="save">Save</button>
-          </div>
-        </div>
         </form>
-        <div id="ques-et-answers">
-          <div>
-            <h3><b>Questions</b></h3>
-          </div>
-          <div class="user-ques">
-            <p>You have asked <span>3</span><a href="userquestion.html"> questions</a></p>
-          </div>
-          <!-- <div>
-            <h3><b>Answers</b></h3>
-          </div>
-          <div class="user-ans">
-            <p>You have <a href="useranswer.html">answered </a><span>4</span> questions</p> -->
-          </div>
-        </div>
-      </section>
+      </div>   
+      <div id="Questions" class="tabcontent">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p> 
+      </div>
+      <div id="Answers" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+      </div>
+    </section>
   </main>
   <footer>
     <p>StackOverflowLite&copy; 2018</p>

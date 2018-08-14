@@ -430,26 +430,51 @@ section .ans-votes-container {
 
 /*profile summarry and details*/
 #profile-container {
-  display: grid;
-  grid-gap: 2px;
-  grid-template-columns: 1fr 1fr;
   border: 2px solid rgb(228, 231, 235);
   background-color: white;
   border-radius: 4px;
-  margin: 3em 5em 0.5em 5em;
+  margin: 3em 5em 0.5em 5em; 
 }
 
-#ques-et-answers {
-  margin: 1em;
-  border-radius: 5px;
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
   background-color: #848d95;
-  width: 80%;
-  height: 45%;
 }
 
-#ques-et-answers p a {
-  text-decoration: none;
+/* profile form button */
+#btn-save button{
+  font: bold 13px Nunito, Helvetica, Arial, sans-serif;
+  background-color: #4700cc;
+  padding: 1em;
+  margin: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
+
 
 /**Footer*/
 #login-footer{
