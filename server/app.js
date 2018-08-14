@@ -11,7 +11,10 @@ app.use(bodyParser.json());
 app.use((bodyParser.urlencoded({ extended: false })));
 
 app.get('/', (req, res) => {
-  res.status(200).send('Welcome to StackOverflowLite! Get informed');
+  res.status(200).json({
+    status: 'success',
+    message: 'Welcome to StackOverflowLite! Get informed',
+  });
 });
 
 export default app;
