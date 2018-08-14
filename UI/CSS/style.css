@@ -483,6 +483,9 @@ section .ans-votes-container {
   margin-left: 4em;
 }
 
+#Answers h4 {
+  margin-left: 5em;
+}
 #Questions a {
   text-decoration: none;
 }
