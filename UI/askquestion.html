@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="CSS/basic.css">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="./CSS/web-fonts-with-css/css/fontawesome-all.min.css">
+  <title>StackOverflowLite | Ask Question</title>
+</head>
+<body>
+  <header id="header">
+    <div id="h-container">
+      <div id="brand">
+        <a href="homepage.html"><h2>StackOverflow<span>Lite</span></h2></a>
+      </div>
+      <div id="h-search">
+        <input type="text" class="in-details" placeholder="Search using keyword...">
+        <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        <nav>
+          <ul>
+            <li><a href="index.html">Logout</a></li>
+            <li><a href="profile.html">Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- <section id="showcase"> -->
+      <!-- background image-->
+      <!-- <img src="./img/stackflow.jpg" alt="">
+      <aside>
+        <h1>Learn, Share, Build</h1>
+        <p>Each month, over millions of developers come to StackOverflowLite to learn, share their knowledge, and build their collaborative relationships.</p>
+        <p>Join a growing community developers.</p>
+      </aside>
+    </section> -->
+    <section id="ques-container">
+      <div class="ques-body">
+        <div id="ques-header">
+          <div class="title">
+            <label for="display-name" class="display">Title</label>
+          </div>
+          <div class="ques-title">
+            <input type="text" name="inline-display-name" placeholder="What's your question title? Please be specific" required>
+          </div>
+        </div>
+        <div class="body">
+          <div class="title">
+            <label for="display-name" class="display">Body</label>
+          </div>
+          <textarea name="question-body" id="" cols="50" rows="10"></textarea>
+        </div>
+        <div id="post-ques">
+          <button class="post">Post Question</button>
+        </div>
+      </div>
+      <div class="how-to">
+        <h3>How to Ask</h3>
+        <p>We prefer questions that can be answered, not just discussed</p>
+        <p>Please provide details. Share your research</p>
+      </div>
+    </section>
+  </main>
+  <footer id="question-footer">
+    <p>StackOverflowLite&copy; 2018</p>
+  </footer>
+  <script src="./js/main.js"></script>
+</body>
+</html>
