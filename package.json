@@ -4,8 +4,9 @@
   "description": "StackOverflowLite is a platform where people can ask questions and provide answers.",
   "main": "app.js",
   "scripts": {
-    "devstart": "nodemon server/bin/www.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/bin/www.js --exec babel-node",
+    "test": "cross-env NODE_ENV=test nyc mocha server/test/**/*.js --require babel-core/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
