@@ -18,6 +18,7 @@ describe('Questions mock-models', () => {
       id: 1,
       text: 'What is the best way of laying out pages when working with html and css', 
     });
+    questions[0].should.eql(ques[0]);
   })
 })
 
@@ -33,7 +34,7 @@ describe('Answers mock-models', () => {
     text: 'A parent is a table that stores the primary key, a child is any table that references the parent with a foreign key',
     }]
     answers[0].should.be.deep.equal(ans[0]);
-    // answers.text.should.be.a('string');
+    answers[0].text.should.be.a('string');
     answers[0].should.have.all.keys({
       id: 1,
       quesID: 5,
