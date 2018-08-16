@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server/bin/www.js --exec babel-node",
-    "test": "cross-env NODE_ENV=test nyc mocha --require babel-core/register server/test/**/*.js",
+    "test": "cross-env NODE_ENV=test nyc mocha --require babel-core/register server/test/**/*.js --timeout 6000ms",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {

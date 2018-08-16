@@ -14,6 +14,7 @@ app.use((bodyParser.urlencoded({ extended: false })));
 // Routes
 app.use('/api/v1', routes);
 
+// default route
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'success',
