@@ -25,7 +25,7 @@ class QuesController {
       });
     }
 
-    return res.status(400).json({
+    return res.status(404).json({
       status: 'fail',
       data: {
         message: 'Question Not Found',
