@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1', routes);
 
 // catch 404 errors and forward to handlers
-app.all('*', (req, res) => {
+app.all('/*', (req, res) => {
   res.status(404).json({
     status: 'fail',
     data: {
