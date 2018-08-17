@@ -3,13 +3,10 @@ import QuesController from '../controllers/quesController';
 
 const router = express.Router();
 
-// GET all questions
+// Routes
 router.get('/questions', QuesController.getAllQues);
-
-// GET a question
 router.get('/questions/:Qid', QuesController.getAQues);
-
-// POST a question
 router.post('/questions', QuesController.postQues);
+router.post('/questions/:Qid/answers', QuesController.postAns);
 
 export default router;
