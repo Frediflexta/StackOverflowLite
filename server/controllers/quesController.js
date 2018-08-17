@@ -33,19 +33,23 @@ class QuesController {
   }
 
   static postQues(req, res) {
-    const { text } = req.body;
+    const {
+      title,
+      text
+    } = req.body;
     questions.push({
       id: questions[questions.length - 1].id + 1,
+      title,
       text,
     });
 
-    const newQues = questions.find(ques => ques.text === req.body.text);
+    const newQues = questions.find(ques => ques.title === req.body.title && ques.text === req.body.text);
 
-    if (req.body.text === '') {
+    if (req.body.title === '' || req.body.text === '') {
       return res.status(204).json({
         status: 'fail',
         data: {
-          message: 'Please provide a question',
+          message: 'Please fill in the fields',
         },
       });
     }
