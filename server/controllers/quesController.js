@@ -34,6 +34,13 @@ class QuesController {
 
   static postQues(req, res) {
     const { text } = req.body;
+    questions.push({
+      id: questions[questions.length - 1].id + 1,
+      text,
+    });
+
+    const newQues = questions.find(ques => ques.text === req.body.text);
+
     if (req.body.text === '') {
       return res.status(204).json({
         status: 'fail',
@@ -42,13 +49,6 @@ class QuesController {
         },
       });
     }
-
-    questions.push({
-      id: questions[questions.length - 1].id + 1,
-      text,
-    });
-
-    const newQues = questions.find(ques => ques.text === req.body.text);
 
     return res.status(201).json({
       status: 'success',
