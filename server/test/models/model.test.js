@@ -12,10 +12,12 @@ describe('Questions mock-models', () => {
   it('Should contain a question string and an id', () => {
     const ques = [{
       id: 1,
+      title: 'How to use css',
       text: 'What is the best way of laying out pages when working with html and css',    
     }]
     questions[0].should.have.all.keys({
       id: 1,
+      title: 'How to use css',
       text: 'What is the best way of laying out pages when working with html and css', 
     });
     questions[0].should.eql(ques[0]);

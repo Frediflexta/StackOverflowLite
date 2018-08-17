@@ -76,6 +76,7 @@ describe('POST questions', () => {
       .post('/api/v1/questions')
       .send({
         id: 1,
+        title: 'How to use css',
         text: '',
       })
       res.should.have.status(204);
