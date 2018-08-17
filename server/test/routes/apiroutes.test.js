@@ -74,7 +74,7 @@ describe('POST questions', () => {
     }
   })
 
-  it('Should return 204 (No Content) if a POST is sent with a blank request body', async () => {
+  it('Should return 400(Bad Request) if a POST is sent with a blank request body', async () => {
     try {
       const res = await chai.request(app)
       .post('/api/v1/questions')
@@ -83,7 +83,7 @@ describe('POST questions', () => {
         title: 'How to use css',
         text: '',
       })
-      res.should.have.status(204);
+      res.should.have.status(400);
     } catch(e) {
       throw e.message;
     }
@@ -126,11 +126,11 @@ describe('POST answers to a specific question', () => {
     }
   })
 
-  it('Should return 204(No Content answer is posted with an empty field', () => {
+  it('Should return 400(Bad Request) answer is posted with an empty field', () => {
     try {
       const wrongReq = mockReq(badRequest);
       QuesController.postAns(wrongReq, res);
-      res.status.should.have.been.calledWith(204);
+      res.status.should.have.been.calledWith(400);
     } catch (e) {
       throw e.message;
     }

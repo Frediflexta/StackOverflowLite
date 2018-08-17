@@ -48,7 +48,7 @@ class QuesController {
     const newQues = questions.find(ques => ques.title === req.body.title && ques.text === req.body.text);
 
     if (req.body.title === '' || req.body.text === '') {
-      return res.status(204).json({
+      return res.status(400).json({
         status: 'fail',
         data: {
           message: 'Please fill in the fields',
@@ -73,7 +73,7 @@ class QuesController {
     };
 
     if (answer.text === '') {
-      return res.status(204).json({
+      return res.status(400).json({
         status: 'fail',
         message: 'Please provide an answer before sending',
       });
