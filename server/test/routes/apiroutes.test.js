@@ -60,7 +60,7 @@ describe('GET a question', () => {
 })
 
 describe('POST questions', () => {
-  it('Should return 201 (Created) when question get sent succesfully', async () => {
+  it('Should return 201 (Created) when question is sent succesfully', async () => {
     try {
       const res = await chai.request(app)
       .post('/api/v1/questions')
@@ -81,6 +81,23 @@ describe('POST questions', () => {
       })
       res.should.have.status(204);
     } catch(e) {
+      throw e.message;
+    }
+  })
+})
+
+describe('POST answers to questions', () => {
+  it('Should return 201 (Created) status code when successful', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/1/answers')
+      .send({
+        id: 1,
+        quesID: 5,
+        text: 'A parent is a table that stores the primary key, a child is any table that references the parent with a foreign key',
+      })
+      res.should.have.status(201);
+    } catch (e) {
       throw e.message;
     }
   })
