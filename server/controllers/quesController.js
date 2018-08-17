@@ -65,32 +65,28 @@ class QuesController {
   }
 
   static postAns(req, res) {
-    try {
-      const quesID = Number(req.params.Qid);
+    const quesID = Number(req.params.Qid);
 
-      const answer = {
-        id: answers[answers.length - 1].id,
-        text: req.body.text,
-      };
+    const answer = {
+      id: answers[answers.length - 1].id + 1,
+      text: req.body.text,
+    };
 
-      if (answer.text === '') {
-        return res.status(204).json({
-          status: 'fail',
-          message: 'Please provide an answer before sending',
-        });
-      }
-
-      return res.status(201).json({
-        staus: 'success',
-        data: {
-          id: `${answer.id}`,
-          quesID: `${quesID}`,
-          text: `${answer.text}`,
-        },
+    if (answer.text === '') {
+      return res.status(204).json({
+        status: 'fail',
+        message: 'Please provide an answer before sending',
       });
-    } catch (e) {
-      throw e.message;
     }
+
+    return res.status(201).json({
+      staus: 'success',
+      data: {
+        id: `${answer.id}`,
+        quesID: `${quesID}`,
+        text: `${answer.text}`,
+      },
+    });
   }
 }
 
