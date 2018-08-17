@@ -1,4 +1,5 @@
 import questions from '../models/questions';
+import answers from '../models/answers';
 
 class QuesController {
   static getAllQues(req, res) {
@@ -35,8 +36,9 @@ class QuesController {
   static postQues(req, res) {
     const {
       title,
-      text
+      text,
     } = req.body;
+
     questions.push({
       id: questions[questions.length - 1].id + 1,
       title,
@@ -58,6 +60,31 @@ class QuesController {
       status: 'success',
       data: {
         newQues,
+      },
+    });
+  }
+
+  static postAns(req, res) {
+    const quesID = Number(req.params.Qid);
+
+    const answer = {
+      id: answers[answers.length - 1].id + 1,
+      text: req.body.text,
+    };
+
+    if (answer.text === '') {
+      return res.status(204).json({
+        status: 'fail',
+        message: 'Please provide an answer before sending',
+      });
+    }
+
+    return res.status(201).json({
+      staus: 'success',
+      data: {
+        id: `${answer.id}`,
+        quesID: `${quesID}`,
+        text: `${answer.text}`,
       },
     });
   }
