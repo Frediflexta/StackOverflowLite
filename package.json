@@ -23,6 +23,9 @@
     "url": "https://github.com/Frediflexta/StackOverflowLite/issues"
   },
   "homepage": "https://github.com/Frediflexta/StackOverflowLite#readme",
+  "engine": {
+    "node": "8.11.1"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
