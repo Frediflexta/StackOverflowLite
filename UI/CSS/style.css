@@ -2,28 +2,29 @@
 header {
   min-height: 5em;
   padding-left: 1em;
-  background-color: #FAFAFB;
+  background-color: #242729;
   border-bottom: 1.4px solid #bbc0c4;
 }
 
 #brand h2 {
   text-decoration: none;
-  font-size: 1.4em;
+  color: white;
+  font-size: 1.67em;
   float: left;
-  margin: 0;
+  margin: 0.3em 0;
   padding-top: 0.6em;
 }
 
 #brand span {
   font-weight: normal;
   padding-right: 0.2em;
-  border-right: 0.07em solid #08083A;
+  border-right: 0.07em solid white;
 }
 
 #h-search input {
   margin: 0.8em 0 1em 1em;
   width: 20%;
-  height: 25px;
+  height: 2.4em;
   padding-left: 10px;
   border-radius: 0.4em;
 }
@@ -31,8 +32,13 @@ header {
 
 #h-search nav {
   float: right;
-  padding: 1em;
+  padding: 1.4em;
   margin-right: 2em;
+  transition: ease-in;
+}
+
+#h-search form {
+  display: inline;
 }
 
 header li {
@@ -45,10 +51,8 @@ header li a {
   text-decoration: none;
   color: black;
   font-size: 1em;
-  font-weight: regular;
-  background-color: white;
+  background-color: #EEDDDD;
   border-radius: 3px;
-  border: 1px solid #848d95;
   padding: 5px;
   cursor: pointer;
   margin-bottom: 1em;
@@ -56,21 +60,24 @@ header li a {
 
 header li a:hover {
   font-weight: bold;
+  color: white;
+  background-color: #0000EE;
 }
 
 header #btn-search:hover {
-  color: #1FBFB6;
+  color: rgb(194, 228, 226);
   font-weight: bold;
 }
 
 #btn-search {
-  width: 3%;
-  background-color: #848d95;
+  width: 5%;
+  height: 2.9em;
+  background-color: #0000EE;
   color: black;
   border-radius: 3px;
   border: none;
   padding: 8px;
-  margin: 2px 0;
+  margin: 1.4em 0;
   cursor: pointer;
 }
 
@@ -82,24 +89,18 @@ header #btn-search:hover {
 }
 
 .sticky + main {
-  padding-top: 55px;
-}
-
-#showcase {
-  height: 350px;
-  background: url(../img/stackflow.jpg) no-repeat 0 -100px;
-  background-size: 100%;
+  padding-top: 5em;
 }
 
 /**showcase writeup */
-aside {
+/* aside {
   width: 30%;
   font-size: 1.3em;
   padding: 0.2em 0 2em 4em;
   color: white;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.822);
   opacity: inherit;
-}
+} */
 
 /** header styling*/
 .h-content {
@@ -109,7 +110,7 @@ aside {
   border: 2px solid rgb(228, 231, 235);
   background-color: white;
   border-radius: 4px;
-  margin: 3em 5em 0.5em 5em; 
+  margin: 1em 5em 0.5em 5em; 
 }
 
 
@@ -140,7 +141,7 @@ aside {
 
 #ask button{
   font: bold 13px Nunito, Helvetica, Arial, sans-serif;
-  background-color: #08083A;
+  background-color: #0000EE;
   color: white;
   padding: 12px;
   margin-top: 15px;
@@ -152,6 +153,7 @@ aside {
 #ask a {
   text-decoration: none;
   color: white;
+  text-shadow: #111;
 }
 
 .votes {
@@ -206,9 +208,9 @@ aside {
 
 /*forms*/
 #login-header {
-  width: 55%;
-  margin: 2em 15em 1em 18em;
-  justify-content: baseline;
+  width: 40%;  
+  margin: 2em 5em 1em 25em;
+  justify-content: baseline;  
   text-align: center;
   border: 2px solid rgb(228, 231, 235);
   background-color: white;
@@ -219,49 +221,57 @@ aside {
   display: grid;
   grid-gap: 2px;
   grid-template-rows: 1fr;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 1fr 1fr;
   padding-top: 1em;
   margin: 0 6em;
 }
 
+.form-content form {
+  width: 40%;
+  margin: 0 5em 0 25em;
+  text-align: center;
+  background-color: white;
+  border-radius: 4px;
+}
+
 .label-username {
   grid-column: 1 / 2;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .in-username {
   grid-column: 2 / -1;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .label-email {
   grid-column: 1 / 2;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .in-email {
   grid-column: 2 / -1;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .label-password {
   grid-column: 1 / 2;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .in-password {
   grid-column: 2 / -1;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .btn-login {
   grid-column: 2 / 3;
-  margin-left: 10em;
+  margin-right: 9em;
 }
 
 .form-field input {
   margin: 1em 12em 1em 0;
-  width: 263px;
+  width: 80%;
   line-height: 1.3;
   font-size: 100%;
   padding: 8px;
@@ -277,16 +287,9 @@ aside {
   font-size: 100%;
 }
 
-.form-content form {
-  width: 55%;
-  margin: 0 15em 0 18em;
-  text-align: center;
-  background-color: white;
-  border-radius: 4px;
-}
-
 .btn-login button {
   font: bold 13px Nunito, Helvetica, Arial, sans-serif;
+  color: white;
   background-color: #4700cc;
   padding: 12px;
   margin-top: 15px;
@@ -296,9 +299,8 @@ aside {
 }
 
 .formtext {
-  padding: 20px;
-  width: 50%;
-  margin: 0 auto 6em auto;
+  text-align: center;
+  padding: 0;
 }
 
 .formtext a {
@@ -327,8 +329,9 @@ aside {
 }
 
 #post-ques .post {
-  font: bold 12px Nunito, Helvetica, Arial, sans-serif;
-  background-color: #848d95;
+  font: bold 14px Nunito, Helvetica, Arial, sans-serif;
+  text-shadow: #111;
+  background-color: #0000EE;
   color: white;
   padding: 7px;
   border: none;
@@ -364,12 +367,12 @@ aside {
 .how-to {
   grid-column: 2 / -1;
   border-radius: 5px;
-  background-color: #848d95;
+  background-color: #63A71F;
   width: 80%;
-  height: 45%;
+  height: 60%;
 }
 
-.how-to p {
+.how-to h3, p {
   margin: 1em;
 }
 
@@ -385,12 +388,12 @@ aside {
   background-color: white;
   border-radius: 3px;
   border-bottom: 0.5px solid grey;
-  min-height: 50%;;
+  min-height: 20%;
   margin: 2em 1em 2em 14.5em;
   padding: 1em;
 }
 
-.ans-header a{
+.ans-header a {
   text-decoration: none;
 }
 
@@ -492,7 +495,7 @@ section .ans-votes-container {
 /**Footer*/
 #login-footer{
   padding: 3px;
-  margin-top: 5%;
+  margin-top: 5%; 
   color: #848d95;
   background-color: #242729;
   text-align: center;
@@ -519,4 +522,170 @@ footer {
   background-color: #242729;
   text-align: center;
   position: relative;
+}
+
+/*** Mobile Responsive**/
+@media(max-width: 768px) {
+
+  .sticky + main {
+    padding-top: 9em;
+  }
+
+  #brand h2 {
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+
+  header li a {
+    display: block;
+    font-weight: bold;
+    color: white;
+    background-color: #0000EE;
+  }
+
+  header li {
+    /* width: 30%; */
+    display: inline-block;
+    float: none;
+    padding-top: 0.5em;
+    margin-right: 1em;
+  }
+
+  .h-content {
+    margin: 6em 2em 0 2em; 
+  }
+
+  .content-container {
+    margin: 0 2em 0 2em;
+  }
+
+  #ask {
+    grid-column: 8 / -1;
+  }
+
+  #h-search input {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #btn-search {
+    width: 15%;
+  }
+
+  #h-search nav {
+    display: inline;
+    float: none;
+    text-align: center;
+  }
+
+  #login-header {
+    width: 80%;
+    margin: 1em 2em 1em 2.5em;
+  }
+
+  .form-content form {
+    width: 80%;
+    margin: 0 2em 0 2.5em;
+  }
+
+  .form-field {
+    padding-top: 0em;
+    margin: 0 0em;
+  }
+
+  #login-footer {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #ans-container {
+    grid-template-rows: 90px 300px 20px 1fr;
+    width: 90%;
+    min-height: 25%; 
+    margin: 1em 1em;
+    padding: 0.3em;
+  }
+
+  .ans-header h1 {
+    grid-row: 1 / 2;
+  }
+
+  ans-votes {
+    padding-top: 2em;
+    margin: 0 3px 0 0;
+  }
+
+  .answer {
+    width: 90%;
+  }
+
+  .post-answers textarea {
+    width: 90%;
+    margin: 1em;
+  }
+
+  #post-ques .post {
+    margin: 0 0 2em 1em;
+  }
+
+  .post-text {
+    grid-row: 2 / 3;
+    padding-top: 2em;
+    text-align: left;
+    /* margin-bottom: 0em; */
+  }
+
+  #ques-container {
+    display: grid;
+    grid-template-rows: 250px 1fr;
+    width: 80%;
+    margin: 1em 1em 1em 1em;
+    padding: 1em;
+  }
+
+  .how-to {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    width: 100%;
+  }
+
+  .ques-body {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  #question-footer {
+    /* padding: 3px;
+    margin-top: 5%;
+    color: #848d95;
+    background-color: #242729; */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%
+  }
+
+  .tab {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1ff;
+  }
+
+  #profile-container {
+    border: 2px solid rgb(228, 231, 235);
+    background-color: white;
+    border-radius: 4px;
+    margin: 2em 1em 0em 1em;
+  }
+
+
 }

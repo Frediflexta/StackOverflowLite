@@ -16,8 +16,10 @@
         <a href="homepage.html"><h2>StackOverflow<span>Lite</span></h2></a>
       </div>
       <div id="h-search">
-        <input type="text" class="in-details" placeholder="Search using keyword...">
-        <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        <form action="#">
+          <input type="text" class="in-details" placeholder="Search using keyword...">
+          <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        </form>
         <nav>
           <ul>
             <li><a href="index.html">Logout</a></li>
@@ -71,17 +73,19 @@
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus tempora adipisci sed provident ipsum necessitatibus, excepturi ut architecto placeat molestias, odio suscipit numquam asperiores sint itaque quisquam nostrum? Labore accusamus, fugit minima cum neque minus animi eum veritatis consequuntur. Officiis.</p>
             </div>
       </div>   
-      <div class="post-answers">
-        <div class="ans-body">
-          <div class="title">
-            <label for="display-name" class="display"><b>Your Answer</b></label>
+      <form action="#">
+        <div class="post-answers">
+          <div class="ans-body">
+            <div class="title">
+              <label for="display-name" class="display"><b>Your Answer</b></label>
+            </div>
+            <textarea name="question-body" id="" cols="70" rows="10"></textarea>
           </div>
-          <textarea name="question-body" id="" cols="70" rows="10"></textarea>
+          <div id="post-ques">
+            <button class="post">Post Answer</button>
+          </div>
         </div>
-        <div id="post-ques">
-          <button class="post">Post Answer</button>
-        </div>
-      </div>   
+      </form>   
     </section>
   </main>
   <footer>
