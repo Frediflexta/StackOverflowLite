@@ -1,9 +1,9 @@
 html, body {
-  background: url(../img/stackflow.jpg);
+  background-color: #e3c7c75e; 
+  /* width: 100%; */
   margin: 0px;
   padding: 0px;
-  /* background-color: #e2e7ee; */
-  color: #08083A;
+  font-weight: lighter;
   font-family: Nunito, Helvetica, Arial, sans-serif;
 }
 
@@ -11,4 +11,14 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
-}  
+}
+
+*:focus {
+  outline: none;
+}
+
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+ } */

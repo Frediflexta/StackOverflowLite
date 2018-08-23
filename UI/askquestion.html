@@ -16,8 +16,10 @@
         <a href="homepage.html"><h2>StackOverflow<span>Lite</span></h2></a>
       </div>
       <div id="h-search">
-        <input type="text" class="in-details" placeholder="Search using keyword...">
-        <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        <form action="#">
+          <input type="text" class="in-details" placeholder="Search using keyword...">
+          <button id="btn-search" type="submit"><i class="fas fa-search"></i></button>
+        </form>
         <nav>
           <ul>
             <li><a href="index.html">Logout</a></li>
@@ -47,15 +49,17 @@
             <input type="text" name="inline-display-name" placeholder="What's your question title? Please be specific" required>
           </div>
         </div>
-        <div class="body">
-          <div class="title">
-            <label for="display-name" class="display">Body</label>
+        <form action="#">
+          <div class="body">
+            <div class="title">
+              <label for="display-name" class="display">Body</label>
+            </div>
+            <textarea name="question-body" id="" cols="50" rows="10"></textarea>
           </div>
-          <textarea name="question-body" id="" cols="50" rows="10"></textarea>
-        </div>
-        <div id="post-ques">
-          <button class="post">Post Question</button>
-        </div>
+          <div id="post-ques">
+            <button class="post">Post Question</button>
+          </div>
+        </form>
       </div>
       <div class="how-to">
         <h3>How to Ask</h3>
