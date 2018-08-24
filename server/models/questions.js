@@ -1,31 +1,25 @@
-// this stores questions being asked
+import pool from '../../config/config';
 
-const questions = [
-  {
-    id: 1,
-    title: 'How to use css',
-    text: 'What is the best way of laying out pages when working with html and css',
-  },
-  {
-    id: 2,
-    title: 'Pop-super star',
-    text: 'When did Micheal Jackson die',
-  },
-  {
-    id: 3,
-    title: 'trick question',
-    text: 'Who came first, the chicken or the egg',
-  },
-  {
-    id: 4,
-    title: 'programming language',
-    text: 'What is the difference between java and javascript',
-  },
-  {
-    id: 5,
-    title: 'structuring database',
-    text: 'What is a parent child relationship when structuring a database',
-  },
-];
+const text = `DROP TABLE IF EXISTS questions CASCADE;
+CREATE TABLE questions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  userid INT references users(id) ON DELETE CASCADE,
+  questitle      TEXT NOT NULL, 
+  quesbody       TEXT NOT NULL,
+  created_at     TIMESTAMP, 
+  updated_at     TIMESTAMP
+)`;
 
-export default questions;
+console.log(text);
+
+const quesTab = async () => {
+  try {
+    const res = await pool.query(text);
+    console.log(res);
+    return res;
+  } catch (e) {
+    throw e.message;
+  }
+};
+
+export default quesTab;

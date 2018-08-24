@@ -2,3 +2,4 @@ node_modules/
 .nyc_output/
 .coveralls.yml
 coverage/
+.env

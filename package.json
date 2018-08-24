@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/bin/www.js --exec babel-node",
     "test": "cross-env NODE_ENV=test nyc mocha --require babel-core/register server/test/**/*.js --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "db": "babel-node server/models/index.js"
   },
   "repository": {
     "type": "git",
