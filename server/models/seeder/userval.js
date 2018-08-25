@@ -1,7 +1,7 @@
 import pool from '../../../config/config';
 
-const text= `DELETE FROM users CASCADE;
-INSERT INTO users (username, email, pass_wd) VALUES 
+const text = `DELETE FROM users CASCADE;
+INSERT INTO users (username, email, password) VALUES 
   ('frediflexta', 'fred@gmail.com', 'postgres'),
   ('emiko', 'emiko@gmail.com', 'postgres'),
   ('luppy', 'lupp@gmail.com', 'postgres'),
