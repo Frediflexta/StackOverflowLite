@@ -5,9 +5,8 @@ import QuesController from '../controllers/quesController';
 
 const router = express.Router();
 
-// Routes
 router.get('/questions', QuesController.getAllQues);
-// router.get('/questions/:Qid', QuesController.getAQues);
+router.get('/questions/:qId', QuesController.getAQues);
 // router.post('/questions', QuesController.postQues);
 // router.post('/questions/:Qid/answers', QuesController.postAns);
 router.post('/auth/signup', Validate.signUp, UserController.userSignup);
