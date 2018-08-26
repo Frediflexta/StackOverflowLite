@@ -28,8 +28,9 @@ const userData = {
     username: 'Ephraim',
     password: faker.lorem.word()
   },
-  
-
+  emptyquestions: {
+    data: null
+  }
 
 }
 
