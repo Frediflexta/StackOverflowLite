@@ -27,11 +27,7 @@ const userData = {
   invalidPasswordUser: {
     username: 'Ephraim',
     password: faker.lorem.word()
-  },
-  emptyquestions: {
-    data: null
   }
-
 }
 
 export default userData;

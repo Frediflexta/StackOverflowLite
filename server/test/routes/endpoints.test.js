@@ -123,3 +123,45 @@ describe('GET all questions', () => {
   //   }
   // })
 })
+
+describe('GET a single question', () => {
+  it('Should return a status code of 200(Ok)', async () => {
+    try {
+      const res = await chai.request(app)
+      .get('/api/v1/questions/1')
+      res.should.have.status(200);
+    } catch (e) {
+      throw e.message;
+    }
+  })
+  
+  it('Should return a status code of 400(Bad request) when params NaN', async () => {
+    try {
+      const res = await chai.request(app)
+      .get('/api/v1/questions/1o')
+      res.should.have.status(400);
+    } catch (e) {
+      throw e.message;
+    }
+  })
+
+  it('Should return a status 404(Not Found)', async () => {
+    try {
+      const res = await chai.request(app)
+      .get('/api/v1/questions/20')
+      res.should.have.status(404);
+    } catch (e) {
+      throw e.message;
+    }
+  })
+
+  // it('Should return a status 500(Internal error)', async () => {
+  //   try {
+  //     const res = await chai.request(app)
+  //     .get('/api/v1/questions/1')
+  //     res.should.have.status(500);
+  //   } catch (e) {
+  //     throw e.message;
+  //   }
+  // })
+})

@@ -65,6 +65,7 @@ class UserController {
       }
 
       const foundUser = checkUser.rows[0];
+
       const verifyPassword = await bcrypt.compareSync(password, foundUser.password);
 
       if (!verifyPassword) {
