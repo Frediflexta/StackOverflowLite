@@ -10,6 +10,7 @@ const router = express.Router();
 // router.get('/questions/:Qid', QuesController.getAQues);
 // router.post('/questions', QuesController.postQues);
 // router.post('/questions/:Qid/answers', QuesController.postAns);
-router.post('/auth/signup', Validate.validUser, UserController.userSignup);
+router.post('/auth/signup', Validate.signUp, UserController.userSignup);
+router.post('/auth/login', Validate.logIn, UserController.userLogin);
 
 export default router;
