@@ -13,7 +13,7 @@ class Validate {
    * @param {function} next - passes along the process another handler
    * @return {json} res.json
    */
-  static async validUser(req, res, next) {
+  static signUp(req, res, next) {
     try {
       const {
         username,
@@ -46,6 +46,42 @@ class Validate {
         });
       }
 
+      return next();
+    } catch (e) {
+      return res.status(500).json({
+        success: 'false',
+        message: e.message,
+      });
+    }
+  }
+  /**
+   * @param {object} req - Request object
+   * @param {object} res - Response object
+   * @param {function} next - passes along the process another handler
+   * @return {json} res.json
+   */
+  static logIn(req, res, next) {
+    try {
+      const {
+        username,
+        password,
+      } = req.body;
+
+      const whitespace = /\s/;
+
+      if (typeof username !== 'string' || username.trim() === '') {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Please provide a username',
+        });
+      }
+
+      if (typeof password !== 'string' || password.trim() === '' || password.trim().length === '' || password.trim().length < 6 || password.replace(whitespace, '') < 6) {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Please provide a password of Minimum lenght of 6 characters',
+        });
+      }
       return next();
     } catch (e) {
       return res.status(500).json({

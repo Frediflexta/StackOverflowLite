@@ -6,6 +6,9 @@ env:
   global: 
     - CC_TEST_REPORTER_ID=741262fa26908fbfa7a50f1edb6b110d927352539d3cfb01b22b189025a4e273
 
+service:
+  - postgresql
+
 cache:
   directories:
     - "node_modules"

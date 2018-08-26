@@ -9,7 +9,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use((bodyParser.urlencoded({ extended: false })));
 
-app.get('/', (req, res) => {
+app.get('/api/v1', (req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Welcome to StackOverflowLite! Get informed',
