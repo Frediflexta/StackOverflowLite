@@ -101,3 +101,25 @@ describe('User login', () => {
     }
   })
 })
+
+describe('GET all questions', () => {
+  it('Should return a status code of 200 (OK)', async () => {
+    try {
+      const res = await chai.request(app)
+      .get('/api/v1/questions')
+      res.should.have.status(200);
+    } catch(e) {
+      throw e.message;
+    }
+  })
+
+  // it('Should return a status code of 500(Internal server) error if something goes wrong from the server side', async () => {
+  //   try {
+  //     const res = await chai.request(app)
+  //     .get('/api/v1/questions')
+  //     res.should.have.status(500);
+  //   } catch (e) {
+  //     throw e.message;
+  //   }
+  // })
+})
