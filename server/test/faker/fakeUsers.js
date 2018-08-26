@@ -4,7 +4,17 @@ const userData = {
   signupUser: {
     username: faker.name.findName(),
     email: faker.internet.email(),
-    password: faker.lorem.word()
+    password: 'postgres'
+  },
+  namelesSignup: {
+    username: '',
+    email: faker.internet.email(),
+    password: 'postgres'
+  },
+  wrongEmailSignup: {
+    username: faker.name.findName(),
+    email: 'Eph@.com',
+    password: 'postgres'
   },
   loginUser: {
     username: 'Ephraim',

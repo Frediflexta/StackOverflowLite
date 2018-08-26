@@ -6,6 +6,54 @@ import userData from '../faker/fakeUsers';
 chai.should();
 chai.use(chaiHttp);
 
+describe('User signup', () => {
+  it('Should signup a user successfully', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(userData.signupUser)
+      res.should.have.status(201);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.success.should.equal('true');
+      res.body.should.have.property('message');
+      res.body.message.should.equal('Account was successfully created');
+    } catch (e) {
+      throw e.message;
+    }
+  })
+
+  it('Should return 400(Bad Request) on a user signup without a name', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(userData.namelesSignup)
+      res.should.have.status(400);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.success.should.equal('false');
+      res.body.should.have.property('message');
+    } catch (e) {
+      throw e.message;
+    }
+  })
+
+  it('Should return 400(Bad Request) on a user signup with a wrong email', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(userData.wrongEmailSignup)
+      res.should.have.status(400);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.success.should.equal('false');
+      res.body.should.have.property('message');
+    } catch (e) {
+      throw e.message;
+    }
+  })
+})
+
 describe('User login', () => {
   it('Should login existing users', async () => {
     try {
