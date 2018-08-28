@@ -25,8 +25,12 @@ class UserController {
         password,
       } = req.body;
 
-      const hashPwd = await bcrypt.hashSync(password, 10);
-      const insert = await pool.query(queries.signup, [username, email, hashPwd]);
+      const trimedUsername = username.trim();
+      const trimedemail = email.trim();
+      const trimedpassword = password.trim();
+
+      const hashPwd = await bcrypt.hashSync(trimedpassword, 10);
+      const insert = await pool.query(queries.signup, [trimedUsername, trimedemail, hashPwd]);
       const newUser = insert.rows;
 
       const token = jwt.sign(
@@ -35,10 +39,9 @@ class UserController {
         { expiresIn: '3h' },
       );
 
-      return res.status(201).json({
+      return res.header('x-access-token', token).status(201).json({
         success: 'true',
         message: 'Account was successfully created',
-        token,
       });
     } catch (e) {
       return res.status(406).json({
@@ -79,12 +82,9 @@ class UserController {
         id: foundUser.id,
       }, secret, { expiresIn: '3h' });
 
-      return res.status(200).json({
+      return res.header('x-access-token', token).status(200).json({
         success: 'true',
         message: 'Welcome back',
-        data: {
-          token,
-        },
       });
     } catch (e) {
       return res.status(406).json({

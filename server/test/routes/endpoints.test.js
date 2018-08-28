@@ -2,7 +2,9 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
 import userData from '../faker/fakeUsers';
+import dotenv from 'dotenv';
 
+dotenv.config();
 chai.should();
 chai.use(chaiHttp);
 
@@ -66,6 +68,7 @@ describe('User login', () => {
       res.body.success.should.equal('true');
       res.body.should.have.property('message');
       res.body.message.should.equal('Welcome back');
+      process.env.user_token = res.header['x-access-token'];
     } catch (e) {
       throw e.message;
     }
@@ -163,5 +166,60 @@ describe('GET a single question', () => {
   //   } catch (e) {
   //     throw e.message;
   //   }
-  // })
+  // })  
+})
+
+describe('POST questions', () => {
+  it('Should return 201(Created) on successful posting ', async () => {
+    console.log()
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions')
+      .send(userData.goodQues)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(201);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.success.should.equal('true');
+      res.body.should.have.property('message');
+    } catch (e) {
+      throw e.message
+    }
+  })
+
+  it('Should return 400(Bad Request)' , async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions')
+      .send(userData.badQuesI)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(400);
+    } catch (e) {
+      throw e.message
+    }
+  })
+
+  it('Should return 400(Bad Request)', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions')
+      .send(userData.badQuesII)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(400);
+    } catch (e) {
+      throw e.message
+    }
+  })
+
+  it('Should return 400(Bad Request)', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions')
+      .send(userData.badQuesII)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(400);
+    } catch (e) {
+      throw e.message
+    }
+  })
 })

@@ -13,9 +13,9 @@ const secret = process.env.SECRET;
  */
 const auth = async (req, res, next) => {
   try {
-    const token = req.header['x-access-token'];
+    const token = req.header('x-access-token');
     if (!token) {
-      return res.status(403).json({
+      return res.status(401).json({
         success: 'false',
         message: 'Please sign in',
       });
@@ -23,9 +23,9 @@ const auth = async (req, res, next) => {
 
     return jwt.verify(token, secret, (error, decoded) => {
       if (error) {
-        return res.status(500).json({
+        return res.status(401).json({
           success: 'false',
-          message: 'system failure',
+          message: 'Your session has expired',
         });
       }
 
@@ -33,7 +33,13 @@ const auth = async (req, res, next) => {
       return next();
     });
   } catch (e) {
-    throw e.message;
+    return res.status(500).json({
+      success: 'false',
+      message: 'internal server error',
+      data: {
+        Error: e.message,
+      },
+    });
   }
 };
 
