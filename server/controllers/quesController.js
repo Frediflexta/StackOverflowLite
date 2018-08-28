@@ -85,36 +85,59 @@ class QuesController {
       });
     }
   }
+  /**
+   * Create a question
+   * @param  {object} req - Request object
+   * @param {object} res - Response object
+   * @return {json} res.json
+   */
+  static async postQues(req, res) {
+    try {
+      const {
+        questitle,
+        quesbody,
+      } = req.body;
 
-  static postQues(req, res) {
-    const {
-      title,
-      text,
-    } = req.body;
+      const trimedtitle = questitle.trim();
+      const trimedbody = quesbody.trim();
 
-    questions.push({
-      id: questions[questions.length - 1].id + 1,
-      title,
-      text,
-    });
+      const { id: userid } = req.decoded;
+      console.log(trimedtitle);
 
-    const newQues = questions.find(ques => ques.title === req.body.title && ques.text === req.body.text);
+      if (trimedtitle.trim() === '' || typeof trimedtitle !== 'string' || trimedtitle === undefined) {
+        console.log(trimedtitle);
+        return res.status(400).json({
+          success: 'false',
+          message: 'Please a title',
+        });
+      }
 
-    if (req.body.title === '' || req.body.text === '') {
-      return res.status(400).json({
-        status: 'fail',
+      if (typeof trimedbody !== 'string' || trimedbody.trim() === '' || trimedbody === undefined) {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Please explain what you mean',
+        });
+      }
+
+      await pool.query(queries.postquestion, [userid, trimedtitle, trimedbody]);
+
+      return res.status(201).json({
+        success: 'true',
+        message: 'Your question has been posted succesfully',
         data: {
-          message: 'Please fill in the fields',
+          trimedtitle,
+          trimedbody,
+        },
+      });
+    } catch (e) {
+      return res.status(500).json({
+        success: 'false',
+        message: 'internal server error',
+        data: {
+          Error: e.message,
         },
       });
     }
-
-    return res.status(201).json({
-      status: 'success',
-      data: {
-        newQues,
-      },
-    });
   }
 
   static postAns(req, res) {

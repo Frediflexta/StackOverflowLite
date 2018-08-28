@@ -6,8 +6,8 @@ CREATE TABLE answers (
   userid INT references users(id) ON DELETE CASCADE,
   quesid INT references questions(id) ON DELETE CASCADE,
   ansbody       TEXT NOT NULL,
-  created_at    TIMESTAMP, 
-  updated_at    TIMESTAMP
+  created_at    TIMESTAMP DEFAULT NOW(), 
+  updated_at    TIMESTAMP DEFAULT NOW()
 )`;
 
 const ansTab = async () => {
