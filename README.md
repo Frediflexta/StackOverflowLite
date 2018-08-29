@@ -4,7 +4,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f32b95f41b70d4ffb1ea/maintainability)](https://codeclimate.com/github/Frediflexta/StackOverflowLite/maintainability)
 
 StackOverflowLite is a platform where people can ask questions and provide answers. Answers can be up-voted as well researched and accurate or down-voted as unresearched and wrong.
-https://www.pivotaltracker.com/n/projects/2189231
 
 ## Technologies Used
 * Front-end: Vanilla Html, CSS and Javascript
