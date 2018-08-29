@@ -26,12 +26,12 @@ class UserController {
       } = req.body;
 
       const trimedUsername = username.trim();
-      const trimedemail = email.trim();
-      const trimedpassword = password.trim();
+      const trimedEmail = email.trim();
+      const trimedPassword = password.trim();
 
-      const hashPwd = await bcrypt.hashSync(trimedpassword, 10);
-      const insert = await pool.query(queries.signup, [trimedUsername, trimedemail, hashPwd]);
-      const newUser = insert.rows;
+      const hashPwd = await bcrypt.hashSync(trimedPassword, 10);
+      const insert = await pool.query(queries.signUp, [trimedUsername, trimedEmail, hashPwd]);
+      const newUser = insert.rows[0];
 
       const token = jwt.sign(
         { id: newUser.id },
@@ -47,6 +47,7 @@ class UserController {
       return res.status(406).json({
         success: 'false',
         message: 'Email already exists',
+        Error: e.message,
       });
     }
   }
@@ -58,7 +59,7 @@ class UserController {
         password,
       } = req.body;
 
-      const checkUser = await pool.query(queries.signin, [username]);
+      const checkUser = await pool.query(queries.signIn, [username]);
 
       if (checkUser.rowCount < 1) {
         return res.status(400).json({
