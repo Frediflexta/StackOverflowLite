@@ -5,7 +5,7 @@ node_js:
 env: 
   global: 
     - CC_TEST_REPORTER_ID=741262fa26908fbfa7a50f1edb6b110d927352539d3cfb01b22b189025a4e273
-    - SECRET = travisusesecretstoworkwithmyjwtandanyotherplacethatneedsaprocessdotenvfile
+    - SECRET = travisusesecretstoworkwithmyjwtanyotherplacethatneedsaprocessdotenvfile
 
 service:
   - postgresql
@@ -24,6 +24,6 @@ script:
   - npm test
 
 after_script: 
-  - psql -U postgres -d stackoverflow-lite -f server/config/tests/pulldown.sql 
+  - psql -U postgres -d travis -f server/config/tests/pulldown.sql 
   - npm run coverage
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
