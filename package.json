@@ -7,7 +7,10 @@
     "start": "nodemon server/bin/www.js --exec babel-node",
     "test": "set NODE_ENV=test&& npm run db && cross-env NODE_ENV=test nyc mocha --require babel-core/register server/test/**/*.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "db": "cross-env NODE_ENV=test babel-node server/models/index.js --exit"
+    "db": "cross-env NODE_ENV=test babel-node server/models/index.js --exit",
+    "migration": "cross-env NODE_ENV=production babel-node server/models/index.js --exit",
+    "build": "babel server/ -d dist",
+    "heroku-host": "npm run build && node dist/app.js"
   },
   "repository": {
     "type": "git",
