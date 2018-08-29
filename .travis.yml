@@ -24,6 +24,6 @@ script:
   - npm test
 
 after_script: 
-  - psql -U postgres -d stackoverflow-lite -f server/config/tests/pulldown.sql 
+  - psql -U postgres -d travis -f server/config/tests/pulldown.sql 
   - npm run coverage
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
