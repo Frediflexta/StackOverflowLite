@@ -1,6 +1,3 @@
-// import dotenv from 'dotenv';
-// import bcrypt from 'bcrypt';
-// import jwt from 'jsonwebtoken';
 import pool from '../../config/config';
 import queries from '../models/queries';
 
@@ -18,9 +15,9 @@ class QuesController {
    */
   static async getAllQues(req, res) {
     try {
-      const allQuestions = await pool.query(queries.getallquetions);
+      const allQuestions = await pool.query(queries.getAllQuetions);
 
-      if (allQuestions.rows.length < 1) {
+      if (allQuestions.rowsCount < 1) {
         return res.status(200).json({
           success: 'true',
           message: 'There are no questions, be the first to make history!',
@@ -45,7 +42,7 @@ class QuesController {
 
   /**
    * Get a single question
-   * @staticmethod
+   * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
    * @return {json} res.json
@@ -61,7 +58,7 @@ class QuesController {
         });
       }
 
-      const oneQues = await pool.query(queries.getaquestion, [quesId]);
+      const oneQues = await pool.query(queries.getQuestion, [quesId]);
 
       if (oneQues.rowCount < 1) {
         return res.status(404).json({
@@ -87,6 +84,7 @@ class QuesController {
   }
   /**
    * Create a question
+   * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
    * @return {json} res.json
@@ -98,36 +96,86 @@ class QuesController {
         quesbody,
       } = req.body;
 
-      const trimedtitle = questitle.trim();
-      const trimedbody = quesbody.trim();
+      const trimedTitle = questitle.trim();
+      const trimedBody = quesbody.trim();
+      const userId = req.decoded.id;
 
-      const { id: userid } = req.decoded;
-      console.log(trimedtitle);
-
-      if (trimedtitle.trim() === '' || typeof trimedtitle !== 'string' || trimedtitle === undefined) {
-        console.log(trimedtitle);
+      if (trimedTitle.trim() === '' || typeof trimedTitle !== 'string' || trimedTitle === undefined) {
         return res.status(400).json({
           success: 'false',
           message: 'Please a title',
         });
       }
 
-      if (typeof trimedbody !== 'string' || trimedbody.trim() === '' || trimedbody === undefined) {
+      if (typeof trimedBody !== 'string' || trimedBody.trim() === '' || trimedBody === undefined) {
         return res.status(400).json({
           success: 'false',
           message: 'Please explain what you mean',
         });
       }
 
-      await pool.query(queries.postquestion, [userid, trimedtitle, trimedbody]);
+      await pool.query(queries.postQuestion, [userId, trimedTitle, trimedBody]);
 
       return res.status(201).json({
         success: 'true',
         message: 'Your question has been posted succesfully',
         data: {
-          trimedtitle,
-          trimedbody,
+          trimedTitle,
+          trimedBody,
         },
+      });
+    } catch (e) {
+      return res.status(500).json({
+        success: 'false',
+        message: 'internal server error',
+        data: {
+          Error: e.message,
+        },
+      });
+    }
+  }
+
+  /**
+   * Delete a question
+   * @static method
+   * @param  {object} req - Request object
+   * @param {object} res - Response object
+   * @return {json} res.json
+   */
+  static async deleteQues(req, res) {
+    try {
+      const quesId = Number(req.params.qId);
+      if (Number.isInteger(quesId) === false) {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Invalid request',
+        });
+      }
+
+      const userId = req.decoded.id;
+      const findQues = await pool.query(queries.findQuestion, [quesId]);
+
+      if (findQues.rowCount >= 1) {
+        if (findQues.rows[0].userid === userId) {
+          const deleted = await pool.query(queries.deleteQuestion, [quesId, userId]);
+          return res.status(200).json({
+            success: 'true',
+            message: 'Successfully deleted',
+            data: deleted.rowCount,
+          });
+        }
+
+        if (findQues.rows[0].userId !== userId) {
+          return res.status(401).json({
+            success: 'false',
+            message: 'Unauthorized action',
+          });
+        }
+      }
+
+      return res.status(404).json({
+        success: 'false',
+        message: 'Question does not exist',
       });
     } catch (e) {
       return res.status(500).json({

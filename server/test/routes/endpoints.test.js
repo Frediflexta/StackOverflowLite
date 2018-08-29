@@ -20,6 +20,7 @@ describe('User signup', () => {
       res.body.success.should.equal('true');
       res.body.should.have.property('message');
       res.body.message.should.equal('Account was successfully created');
+      process.env.userI_token = res.header['x-access-token'];
     } catch (e) {
       throw e.message;
     }
@@ -221,5 +222,28 @@ describe('POST questions', () => {
     } catch (e) {
       throw e.message
     }
+  })
+})
+
+describe('DELETE a question', () => {
+  it('Should return 200(OK) on deleting successfully', async () => {
+    const res = await chai.request(app)
+    .delete('/api/v1/questions/8')
+    .set('x-access-token', process.env.user_token)
+    res.should.have.status(200)
+  })
+
+  it('Should return 404(Not Found)', async () => {
+    const res = await chai.request(app)
+    .delete('/api/v1/questions/10')
+    .set('x-access-token', process.env.user_token)
+    res.should.have.status(404)
+  })
+
+  it('Should return 401(OK) on deleting successfully', async () => {
+    const res = await chai.request(app)
+    .delete('/api/v1/questions/2')
+    .set('x-access-token', process.env.userI_token)
+    res.should.have.status(401)
   })
 })
