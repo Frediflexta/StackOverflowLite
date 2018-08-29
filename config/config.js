@@ -5,6 +5,15 @@ dotenv.config();
 
 const connection = process.env.DATABASE_URL;
 
-const pool = (process.env.NODE_ENV === 'test') ? new Pool({ connectionString: connection }) : new Pool({ connectionString: connection }) ;
+let pool;
+const exportpool = pool;
 
-export default pool;
+if (process.env.NODE_ENV === 'test') {
+  pool = new Pool({ connectionString: connection });
+} else if (process.env.NODE_ENV === 'development') {
+  pool = new Pool({ connectionString: connection });
+}  else if (process.env.HEROKU_POSTGRESQL_RED_URL) {
+  pool = new Pool({ connectionString: process.env.HEROKU_POSTGRESQL_RED_URL });
+}
+
+export default exportpool;
