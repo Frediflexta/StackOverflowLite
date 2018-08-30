@@ -43,6 +43,11 @@ const userData = {
   badQuesIII: {
     questitle: '',
     quesbody: undefined
+  },goodAns: {
+    ansbody: faker.lorem.sentence()
+  },
+  badAns:{
+    ansbody: ''
   }
 }
 
