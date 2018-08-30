@@ -217,23 +217,73 @@ describe('POST questions', () => {
 
 describe('DELETE a question', () => {
   it('Should return 200(OK) on deleting successfully', async () => {
-    const res = await chai.request(app)
-    .delete('/api/v1/questions/8')
-    .set('x-access-token', process.env.user_token)
-    res.should.have.status(200)
+    try {
+      const res = await chai.request(app)
+      .delete('/api/v1/questions/8')
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(200)
+    } catch (e) {
+      throw e.message;
+    }
   })
 
   it('Should return 404(Not Found)', async () => {
-    const res = await chai.request(app)
-    .delete('/api/v1/questions/10')
-    .set('x-access-token', process.env.user_token)
-    res.should.have.status(404)
+    try {
+      const res = await chai.request(app)
+      .delete('/api/v1/questions/10')
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(404)
+    } catch (e) {
+      throw e.message;
+    }
   })
 
-  it('Should return 401(OK) on deleting successfully', async () => {
-    const res = await chai.request(app)
-    .delete('/api/v1/questions/2')
-    .set('x-access-token', process.env.userI_token)
-    res.should.have.status(401)
+  it('Should return 401(Unauthorized) on deleting successfully', async () => {
+    try {
+      const res = await chai.request(app)
+      .delete('/api/v1/questions/2')
+      .set('x-access-token', process.env.userI_token)
+      res.should.have.status(401)
+    } catch (e){
+      throw e.message;
+    }
+  })
+})
+
+describe('Answer a question', () => {
+  it('Should return 201(Created) on successful posting', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions/7/answers')
+      .send(userData.goodAns)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(201);
+    } catch (e) {
+      throw e.message
+    }
+  });
+
+  it ('Should return 400(Bad Request) on an empty field', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions/7/answers')
+      .send(userData.badAns)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(400);
+    } catch (e) {
+      throw e.messsage
+    }
+  })
+
+  it ('Should return 404(Not Found) for unexisting answers', async () => {
+    try {
+      const res = await chai.request(app)
+      .post('/api/v1/questions/23/answers')
+      .send(userData.goodAns)
+      .set('x-access-token', process.env.user_token)
+      res.should.have.status(404);
+    } catch (e) {
+      throw e.messsage
+    }
   })
 })

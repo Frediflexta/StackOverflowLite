@@ -114,15 +114,12 @@ class QuesController {
         });
       }
 
-      await pool.query(queries.postQuestion, [userId, trimedTitle, trimedBody]);
+      const insertQues = await pool.query(queries.postQuestion, [userId, trimedTitle, trimedBody]);
 
       return res.status(201).json({
         success: 'true',
         message: 'Your question has been posted succesfully',
-        data: {
-          trimedTitle,
-          trimedBody,
-        },
+        data: insertQues.rowCount,
       });
     } catch (e) {
       return res.status(500).json({
@@ -188,29 +185,71 @@ class QuesController {
     }
   }
 
-  static postAns(req, res) {
-    const quesID = Number(req.params.Qid);
+  /**
+   * Create an answer
+   * @static method
+   * @param  {object} req - Request object
+   * @param {object} res - Response object
+   * @return {json} res.json
+   */
+  static async postAns(req, res) {
+    try {
+      const quesId = Number(req.params.qId);
+      if (Number.isInteger(quesId) === false) {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Invalid request',
+        });
+      } 
 
-    const answer = {
-      id: answers[answers.length - 1].id + 1,
-      text: req.body.text,
-    };
+      const {
+        ansbody,
+      } = req.body;
 
-    if (answer.text === '') {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Please provide an answer before sending',
+      const userId = req.decoded.id;
+
+      const trimedAns = ansbody.trim();
+
+      if (trimedAns.trim() === '' || typeof trimedAns !== 'string' || trimedAns === undefined) {
+        return res.status(400).json({
+          success: 'false',
+          message: 'Please an answer',
+        });
+      }
+
+      const foundQues = await pool.query(queries.availablleQues, [quesId]);
+
+      if (foundQues.rowCount === 0) {
+        return res.status(404).json({
+          success: 'false',
+          message: 'Question does not exist',
+        });
+      }
+
+      if (foundQues.rows[0].id === quesId) {
+        const ansQues = await pool.query(queries.postAnswer, [userId, quesId, trimedAns]);
+
+        const result = await pool.query(queries.quesAndAns, [quesId]);
+
+        return res.status(201).json({
+          success: 'true',
+          message: 'You answer has been posted',
+          data: {
+            questionTitle: result.rows[0].questitle,
+            questionBody: result.rows[0].quesbody,
+            answers: ansQues.rows[0],
+          },
+        });
+      }
+    } catch (e) {
+      return res.status(500).json({
+        success: 'false',
+        message: 'internal server error',
+        data: {
+          Error: e.message,
+        },
       });
     }
-
-    return res.status(201).json({
-      staus: 'success',
-      data: {
-        id: `${answer.id}`,
-        quesID: `${quesID}`,
-        text: `${answer.text}`,
-      },
-    });
   }
 }
 
