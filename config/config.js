@@ -3,20 +3,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connection = process.env.DATABASE_URL;
-const productionsConnection = process.env.HEROKU_POSTGRESQL_RED_URL;
-
-let exportPool;
+let connection = '';
 
 if (process.env.NODE_ENV === 'test') {
-  console.log(process.env.DATABASE_URL);
-  exportPool = new Pool({ connectionString: connection });
-} else if (process.env.NODE_ENV === 'development') {
-  // console.log(process.env.DATABASE_URL)
-  exportPool = new Pool({ connectionString: connection });
-} else if (process.env.NODE_ENV === 'production') {
-  exportPool = new Pool({ connectionString: productionsConnection });
+  connection = process.env.DATABASE_TEST;
 }
-const pool = exportPool;
+
+if (process.env.NODE_ENV === 'production') {
+  connection = process.env.HEROKU_POSTGRESQL_RED_URL;
+}
+const pool  = new Pool({ connectionString: connection || process.env.DATABASE_URL });
 
 export default pool;

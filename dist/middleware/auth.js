@@ -369,7 +369,7 @@ var auth = function () {
 
                 return res.status(401).json({
                   success: 'false',
-                  message: 'Your session has expired'
+                  message: 'You are logged out'
                 });
               } else {
                 cov_h11ss35cn.b[1][1]++;

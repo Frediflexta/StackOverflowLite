@@ -2,7 +2,7 @@
 
 var cov_2q70216d0c = function () {
   var path = 'C:\\Users\\hp\\Documents\\StackOverflowLite\\server\\models\\queries.js',
-      hash = '0f2cad5d1dae2ea37928a727435d0ac31ac8b6b3',
+      hash = 'be5acf94583c92474231403a801b946db1473502',
       Function = function () {}.constructor,
       global = new Function('return this')(),
       gcv = '__coverage__',
@@ -15,7 +15,7 @@ var cov_2q70216d0c = function () {
           column: 16
         },
         end: {
-          line: 9,
+          line: 12,
           column: 1
         }
       }
@@ -49,7 +49,10 @@ var queries = (cov_2q70216d0c.s[0]++, {
   getQuestion: 'SELECT * FROM questions WHERE id = $1',
   postQuestion: 'INSERT INTO questions (userid, questitle, quesbody) VALUES ($1, $2, $3)',
   deleteQuestion: 'DELETE FROM questions WHERE id = $1 AND userid= $2',
-  findQuestion: 'SELECT userid FROM questions WHERE id = $1'
+  findQuestion: 'SELECT userid FROM questions WHERE id = $1',
+  availablleQues: 'SELECT * FROM questions WHERE id = $1',
+  postAnswer: 'INSERT INTO answers (userid, quesid, ansbody) VALUES ($1, $2, $3) RETURNING *',
+  quesAndAns: 'SELECT questions.id, questions.questitle, questions.quesbody, answers.ansbody FROM questions JOIN answers ON questions.id=answers.quesid WHERE questions.id = $1'
 });
 
 exports.default = queries;

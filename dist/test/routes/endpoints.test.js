@@ -514,20 +514,28 @@ describe('DELETE a question', function () {
       while (1) {
         switch (_context15.prev = _context15.next) {
           case 0:
-            _context15.next = 2;
+            _context15.prev = 0;
+            _context15.next = 3;
             return _chai2.default.request(_app2.default).delete('/api/v1/questions/8').set('x-access-token', process.env.user_token);
 
-          case 2:
+          case 3:
             res = _context15.sent;
 
             res.should.have.status(200);
+            _context15.next = 10;
+            break;
 
-          case 4:
+          case 7:
+            _context15.prev = 7;
+            _context15.t0 = _context15['catch'](0);
+            throw _context15.t0.message;
+
+          case 10:
           case 'end':
             return _context15.stop();
         }
       }
-    }, _callee15, undefined);
+    }, _callee15, undefined, [[0, 7]]);
   })));
 
   it('Should return 404(Not Found)', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee16() {
@@ -536,41 +544,149 @@ describe('DELETE a question', function () {
       while (1) {
         switch (_context16.prev = _context16.next) {
           case 0:
-            _context16.next = 2;
+            _context16.prev = 0;
+            _context16.next = 3;
             return _chai2.default.request(_app2.default).delete('/api/v1/questions/10').set('x-access-token', process.env.user_token);
 
-          case 2:
+          case 3:
             res = _context16.sent;
 
             res.should.have.status(404);
+            _context16.next = 10;
+            break;
 
-          case 4:
+          case 7:
+            _context16.prev = 7;
+            _context16.t0 = _context16['catch'](0);
+            throw _context16.t0.message;
+
+          case 10:
           case 'end':
             return _context16.stop();
         }
       }
-    }, _callee16, undefined);
+    }, _callee16, undefined, [[0, 7]]);
   })));
 
-  it('Should return 401(OK) on deleting successfully', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee17() {
+  it('Should return 401(Unauthorized) on deleting successfully', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee17() {
     var res;
     return _regenerator2.default.wrap(function _callee17$(_context17) {
       while (1) {
         switch (_context17.prev = _context17.next) {
           case 0:
-            _context17.next = 2;
+            _context17.prev = 0;
+            _context17.next = 3;
             return _chai2.default.request(_app2.default).delete('/api/v1/questions/2').set('x-access-token', process.env.userI_token);
 
-          case 2:
+          case 3:
             res = _context17.sent;
 
             res.should.have.status(401);
+            _context17.next = 10;
+            break;
 
-          case 4:
+          case 7:
+            _context17.prev = 7;
+            _context17.t0 = _context17['catch'](0);
+            throw _context17.t0.message;
+
+          case 10:
           case 'end':
             return _context17.stop();
         }
       }
-    }, _callee17, undefined);
+    }, _callee17, undefined, [[0, 7]]);
+  })));
+});
+
+describe('Answer a question', function () {
+  it('Should return 201(Created) on successful posting', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee18() {
+    var res;
+    return _regenerator2.default.wrap(function _callee18$(_context18) {
+      while (1) {
+        switch (_context18.prev = _context18.next) {
+          case 0:
+            _context18.prev = 0;
+            _context18.next = 3;
+            return _chai2.default.request(_app2.default).post('/api/v1/questions/7/answers').send(_fakeUsers2.default.goodAns).set('x-access-token', process.env.user_token);
+
+          case 3:
+            res = _context18.sent;
+
+            res.should.have.status(201);
+            _context18.next = 10;
+            break;
+
+          case 7:
+            _context18.prev = 7;
+            _context18.t0 = _context18['catch'](0);
+            throw _context18.t0.message;
+
+          case 10:
+          case 'end':
+            return _context18.stop();
+        }
+      }
+    }, _callee18, undefined, [[0, 7]]);
+  })));
+
+  it('Should return 400(Bad Request) on an empty field', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee19() {
+    var res;
+    return _regenerator2.default.wrap(function _callee19$(_context19) {
+      while (1) {
+        switch (_context19.prev = _context19.next) {
+          case 0:
+            _context19.prev = 0;
+            _context19.next = 3;
+            return _chai2.default.request(_app2.default).post('/api/v1/questions/7/answers').send(_fakeUsers2.default.badAns).set('x-access-token', process.env.user_token);
+
+          case 3:
+            res = _context19.sent;
+
+            res.should.have.status(400);
+            _context19.next = 10;
+            break;
+
+          case 7:
+            _context19.prev = 7;
+            _context19.t0 = _context19['catch'](0);
+            throw _context19.t0.messsage;
+
+          case 10:
+          case 'end':
+            return _context19.stop();
+        }
+      }
+    }, _callee19, undefined, [[0, 7]]);
+  })));
+
+  it('Should return 404(Not Found) for unexisting answers', (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee20() {
+    var res;
+    return _regenerator2.default.wrap(function _callee20$(_context20) {
+      while (1) {
+        switch (_context20.prev = _context20.next) {
+          case 0:
+            _context20.prev = 0;
+            _context20.next = 3;
+            return _chai2.default.request(_app2.default).post('/api/v1/questions/23/answers').send(_fakeUsers2.default.goodAns).set('x-access-token', process.env.user_token);
+
+          case 3:
+            res = _context20.sent;
+
+            res.should.have.status(404);
+            _context20.next = 10;
+            break;
+
+          case 7:
+            _context20.prev = 7;
+            _context20.t0 = _context20['catch'](0);
+            throw _context20.t0.messsage;
+
+          case 10:
+          case 'end':
+            return _context20.stop();
+        }
+      }
+    }, _callee20, undefined, [[0, 7]]);
   })));
 });
