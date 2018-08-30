@@ -2,7 +2,7 @@
 
 var cov_2rquuhd32q = function () {
   var path = 'C:\\Users\\hp\\Documents\\StackOverflowLite\\server\\test\\faker\\fakeUsers.js',
-      hash = '12081a28a5e10f787022b4883b60a7b8bb2aca1b',
+      hash = '1658fca0a8af2a3d5c3f168d039840e408bc2bd8',
       Function = function () {}.constructor,
       global = new Function('return this')(),
       gcv = '__coverage__',
@@ -15,7 +15,7 @@ var cov_2rquuhd32q = function () {
           column: 17
         },
         end: {
-          line: 47,
+          line: 52,
           column: 1
         }
       }
@@ -92,6 +92,11 @@ var userData = (cov_2rquuhd32q.s[0]++, {
   badQuesIII: {
     questitle: '',
     quesbody: undefined
+  }, goodAns: {
+    ansbody: _faker2.default.lorem.sentence()
+  },
+  badAns: {
+    ansbody: ''
   }
 });
 
