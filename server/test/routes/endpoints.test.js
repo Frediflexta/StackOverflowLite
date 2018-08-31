@@ -15,11 +15,6 @@ describe('User signup', () => {
       .post('/api/v1/auth/signup')
       .send(userData.signupUser)
       res.should.have.status(201);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('true');
-      res.body.should.have.property('message');
-      res.body.message.should.equal('Account was successfully created');
       process.env.userI_token = res.header['x-access-token'];
     } catch (e) {
       throw e.message;
@@ -32,10 +27,6 @@ describe('User signup', () => {
       .post('/api/v1/auth/signup')
       .send(userData.namelesSignup)
       res.should.have.status(400);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('false');
-      res.body.should.have.property('message');
     } catch (e) {
       throw e.message;
     }
@@ -47,10 +38,6 @@ describe('User signup', () => {
       .post('/api/v1/auth/signup')
       .send(userData.wrongEmailSignup)
       res.should.have.status(400);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('false');
-      res.body.should.have.property('message');
     } catch (e) {
       throw e.message;
     }
@@ -64,11 +51,7 @@ describe('User login', () => {
       .post('/api/v1/auth/login')
       .send(userData.loginUser)
       res.should.have.status(200);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('true');
-      res.body.should.have.property('message');
-      res.body.message.should.equal('Welcome back');
+
       process.env.user_token = res.header['x-access-token'];
     } catch (e) {
       throw e.message;
@@ -81,10 +64,6 @@ describe('User login', () => {
       .post('/api/v1/auth/login')
       .send(userData.invalidUser)
       res.should.have.status(400);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('false');
-      res.body.should.have.property('message');
     } catch (e) {
       throw e.message;
     }
@@ -96,10 +75,6 @@ describe('User login', () => {
       .post('/api/v1/auth/login')
       .send(userData.invalidPasswordUser)
       res.should.have.status(400);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('false');
-      res.body.should.have.property('message');
     } catch (e) {
       throw e.message;
     }
@@ -169,10 +144,6 @@ describe('POST questions', () => {
       .send(userData.goodQues)
       .set('x-access-token', process.env.user_token)
       res.should.have.status(201);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.success.should.equal('true');
-      res.body.should.have.property('message');
     } catch (e) {
       throw e.message
     }

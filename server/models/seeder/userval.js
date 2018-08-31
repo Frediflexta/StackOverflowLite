@@ -1,4 +1,4 @@
-import pool from '../../../config/config';
+import pool from '../../config/config';
 
 const text = `DELETE FROM users CASCADE;
 INSERT INTO users (username, email, password) VALUES 

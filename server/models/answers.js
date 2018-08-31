@@ -1,4 +1,4 @@
-import pool from '../../config/config';
+import pool from '../config/config';
 
 const text = `DROP TABLE IF EXISTS answers CASCADE;
 CREATE TABLE answers (
@@ -9,7 +9,7 @@ CREATE TABLE answers (
   created_at    TIMESTAMP DEFAULT NOW(), 
   updated_at    TIMESTAMP DEFAULT NOW()
 )`;
-
+console.log(text)
 const ansTab = async () => {
   try {
     const res = await pool.query(text);

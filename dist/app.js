@@ -2,7 +2,7 @@
 
 var cov_kaan1xirc = function () {
   var path = 'C:\\Users\\hp\\Documents\\StackOverflowLite\\server\\app.js',
-      hash = 'e387cd2914417efef3f97c428fd66d9e2246efd3',
+      hash = '4014480611b07b990986953530dc4bbec8110436',
       Function = function () {}.constructor,
       global = new Function('return this')(),
       gcv = '__coverage__',
@@ -130,17 +130,17 @@ var cov_kaan1xirc = function () {
         decl: {
           start: {
             line: 21,
-            column: 14
+            column: 13
           },
           end: {
             line: 21,
-            column: 15
+            column: 14
           }
         },
         loc: {
           start: {
             line: 21,
-            column: 28
+            column: 27
           },
           end: {
             line: 28,
@@ -225,14 +225,14 @@ cov_kaan1xirc.s[6]++;
 app.use('/api/v1', _apiRoutes2.default);
 
 cov_kaan1xirc.s[7]++;
-app.all('/*', function (req, res) {
+app.all('*', function (req, res) {
   cov_kaan1xirc.f[1]++;
   cov_kaan1xirc.s[8]++;
 
   res.status(404).json({
     status: 'fail',
     data: {
-      message: 'Page Not Found'
+      message: 'Endpoint does not exist'
     }
   });
 });

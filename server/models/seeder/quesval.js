@@ -1,4 +1,4 @@
-import pool from '../../../config/config';
+import pool from '../../config/config';
 
 const text = `DELETE FROM questions CASCADE;
 INSERT INTO questions (userid, questitle, quesbody) VALUES

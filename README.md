@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Frediflexta/StackOverflowLite/badge.svg?branch=develop)](https://coveralls.io/github/Frediflexta/StackOverflowLite?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f32b95f41b70d4ffb1ea/maintainability)](https://codeclimate.com/github/Frediflexta/StackOverflowLite/maintainability)
 
-StackOverflowLite is a platform where people can ask questions and provide answers. Answers can be up-voted as well researched and accurate or down-voted as unresearched and wrong.
+StackOverflowLite is a platform where people can ask questions and provide answers. Answers can be selected as favourites.
 
 ## Technologies Used
 * Front-end: Vanilla Html, CSS and Javascript
