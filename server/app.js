@@ -18,11 +18,11 @@ app.get('/api/v1', (req, res) => {
 
 app.use('/api/v1', routes);
 
-app.all('/*', (req, res) => {
+app.all('*', (req, res) => {
   res.status(404).json({
     status: 'fail',
     data: {
-      message: 'Page Not Found',
+      message: 'Endpoint does not exist',
     },
   });
 });

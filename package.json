@@ -11,7 +11,7 @@
     "db": "cross-env NODE_ENV=test babel-node server/models/index.js --exit",
     "migration": "cross-env NODE_ENV=production babel-node server/models/index.js --exit",
     "build": "babel server/ -d dist",
-    "heroku-host": "npm run build && node dist/app.js"
+    "heroku-host": "npm run build && node dist/bin/www.js"
   },
   "repository": {
     "type": "git",

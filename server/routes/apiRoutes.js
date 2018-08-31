@@ -11,6 +11,7 @@ router.get('/questions/:qId', QuesController.getAQues);
 router.post('/questions', auth, QuesController.postQues);
 router.delete('/questions/:qId', auth, QuesController.deleteQues);
 router.post('/questions/:qId/answers', auth, QuesController.postAns);
+// router.put('/questions/:qId/answers/:aId', auth, QuesController.favouriteQuestion);
 router.post('/auth/signup', Validate.signUp, UserController.userSignup);
 router.post('/auth/login', Validate.logIn, UserController.userLogin);
 

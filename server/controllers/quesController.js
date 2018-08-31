@@ -1,4 +1,4 @@
-import pool from '../../config/config';
+import pool from '../config/config';
 import queries from '../models/queries';
 
 /**
@@ -17,24 +17,16 @@ class QuesController {
     try {
       const allQuestions = await pool.query(queries.getAllQuetions);
 
-      if (allQuestions.rowsCount < 1) {
-        return res.status(200).json({
-          success: 'true',
-          message: 'There are no questions, be the first to make history!',
-          data: null,
-        });
-      }
-
       return res.status(200).json({
-        success: 'true',
+        status: 'success',
         data: allQuestions.rows,
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(500).json({
-        success: 'false',
+        status: 'fail',
         message: 'Internal server error',
         data: {
-          Error: e.message,
+          Error: error.message,
         },
       });
     }
@@ -45,39 +37,44 @@ class QuesController {
    * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
-   * @return {json} res.json
+   * @return {object} res.json
    */
   static async getAQues(req, res) {
     try {
-      const quesId = Number(req.params.qId);
+      const questionId = Number(req.params.qId);
 
-      if (Number.isInteger(quesId) === false) {
+      if (Number.isInteger(questionId) === false) {
         return res.status(400).json({
-          success: 'false',
+          status: 'fail',
           message: 'Invalid params',
         });
       }
 
-      const oneQues = await pool.query(queries.getQuestion, [quesId]);
-
-      if (oneQues.rowCount < 1) {
+      const oneQuestion = await pool.query(queries.getQuestion, [questionId]);
+      const allAnswers = await pool.query(queries.getAllAnswers, [questionId]);
+      if (oneQuestion.rowCount === 0) {
         return res.status(404).json({
-          success: 'false',
-          message: 'Page Not Found',
+          status: 'fail',
+          message: 'Question not found',
         });
       }
 
       return res.status(200).json({
-        success: 'true',
+        status: 'success',
         message: 'Retrieval successful',
-        data: oneQues.rows[0],
+        data: {
+          question: {
+            response: oneQuestion.rows[0],
+            answers: allAnswers.rows,
+          },
+        },
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(500).json({
-        success: 'false',
+        status: 'fail',
         message: 'internal server error',
         data: {
-          Error: e.message,
+          Error: error.message,
         },
       });
     }
@@ -87,7 +84,7 @@ class QuesController {
    * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
-   * @return {json} res.json
+   * @return {object} res.json
    */
   static async postQues(req, res) {
     try {
@@ -102,31 +99,31 @@ class QuesController {
 
       if (trimedTitle.trim() === '' || typeof trimedTitle !== 'string' || trimedTitle === undefined) {
         return res.status(400).json({
-          success: 'false',
-          message: 'Please a title',
+          status: 'fail',
+          message: 'Please add a title',
         });
       }
 
       if (typeof trimedBody !== 'string' || trimedBody.trim() === '' || trimedBody === undefined) {
         return res.status(400).json({
-          success: 'false',
-          message: 'Please explain what you mean',
+          status: 'fail',
+          message: 'What is your question',
         });
       }
 
       const insertQues = await pool.query(queries.postQuestion, [userId, trimedTitle, trimedBody]);
 
       return res.status(201).json({
-        success: 'true',
+        status: 'success',
         message: 'Your question has been posted succesfully',
-        data: insertQues.rowCount,
+        data: insertQues.rows,
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(500).json({
-        success: 'false',
+        status: 'fail',
         message: 'internal server error',
         data: {
-          Error: e.message,
+          Error: error.message,
         },
       });
     }
@@ -137,70 +134,70 @@ class QuesController {
    * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
-   * @return {json} res.json
+   * @return {object} res.json
    */
   static async deleteQues(req, res) {
     try {
-      const quesId = Number(req.params.qId);
-      if (Number.isInteger(quesId) === false) {
+      const questionId = Number(req.params.qId);
+      if (Number.isInteger(questionId) === false) {
         return res.status(400).json({
-          success: 'false',
+          status: 'fail',
           message: 'Invalid request',
         });
       }
 
       const userId = req.decoded.id;
-      const findQues = await pool.query(queries.findQuestion, [quesId]);
+      const findQues = await pool.query(queries.findQuestion, [questionId]);
 
       if (findQues.rowCount >= 1) {
         if (findQues.rows[0].userid === userId) {
-          const deleted = await pool.query(queries.deleteQuestion, [quesId, userId]);
+          const deleted = await pool.query(queries.deleteQuestion, [questionId, userId]);
           return res.status(200).json({
-            success: 'true',
+            status: 'success',
             message: 'Successfully deleted',
-            data: deleted.rowCount,
+            data: deleted.rows[0],
           });
         }
 
         if (findQues.rows[0].userId !== userId) {
           return res.status(401).json({
-            success: 'false',
+            status: 'fail',
             message: 'Unauthorized action',
           });
         }
       }
 
       return res.status(404).json({
-        success: 'false',
+        status: 'fail',
         message: 'Question does not exist',
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(500).json({
-        success: 'false',
+        status: 'fail',
         message: 'internal server error',
         data: {
-          Error: e.message,
+          Error: error.message,
         },
       });
     }
   }
 
   /**
-   * Create an answer
+   * Post an answer
    * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
-   * @return {json} res.json
+   * @return {object} res.json
    */
   static async postAns(req, res) {
     try {
-      const quesId = Number(req.params.qId);
-      if (Number.isInteger(quesId) === false) {
+      const questionId = Number(req.params.qId);
+      if (Number.isInteger(questionId) === false) {
         return res.status(400).json({
-          success: 'false',
+          status: 'fail',
           message: 'Invalid request',
         });
-      } 
+      }
 
       const {
         ansbody,
@@ -212,45 +209,96 @@ class QuesController {
 
       if (trimedAns.trim() === '' || typeof trimedAns !== 'string' || trimedAns === undefined) {
         return res.status(400).json({
-          success: 'false',
-          message: 'Please an answer',
+          status: 'fail',
+          message: 'Please fill the blank field',
         });
       }
 
-      const foundQues = await pool.query(queries.availablleQues, [quesId]);
+      const foundQuestion = await pool.query(queries.availableQues, [questionId]);
 
-      if (foundQues.rowCount === 0) {
+      if (foundQuestion.rowCount === 0) {
         return res.status(404).json({
-          success: 'false',
+          status: 'fail',
           message: 'Question does not exist',
         });
       }
 
-      if (foundQues.rows[0].id === quesId) {
-        const ansQues = await pool.query(queries.postAnswer, [userId, quesId, trimedAns]);
-
-        const result = await pool.query(queries.quesAndAns, [quesId]);
-
+      if (foundQuestion.rows[0].id === questionId) {
+        const ansQues = await pool.query(queries.postAnswer, [userId, questionId, trimedAns]);
+        // const result = await pool.query(queries.quesAndAns, [questionId]);
         return res.status(201).json({
-          success: 'true',
-          message: 'You answer has been posted',
+          status: 'success',
+          message: 'Your answer has been posted',
           data: {
-            questionTitle: result.rows[0].questitle,
-            questionBody: result.rows[0].quesbody,
-            answers: ansQues.rows[0],
+            answer: ansQues.rows[0],
           },
         });
       }
-    } catch (e) {
+    } catch (error) {
       return res.status(500).json({
-        success: 'false',
+        status: 'fail',
         message: 'internal server error',
         data: {
-          Error: e.message,
+          Error: error.message,
         },
       });
     }
   }
+
+  /**
+   * Updates favourite answer of a question
+   * @static method
+   * @param  {object} req - Request object
+   * @param {object} res - Response object
+   * @return {object} res.json
+   */
+  // static async favouriteQuestion(req, res) {
+  //   try {
+  //     const questionId = Number(req.params.qId);
+  //     const answerId = Number(req.params.aId);
+
+  //     if (Number.isInteger(questionId) === false || Number.isInteger(answerId) === false) {
+  //       return res.status(400).json({
+  //         status: 'fail',
+  //         message: 'Invalid request',
+  //       });
+  //     }
+
+  //     const userId = req.decoded.id;
+  //     const { favourite } = req.body;
+
+  //     if (typeof favourite !== typeof 'boolean') {
+  //       return res.status(400).json({
+  //         status: 'fail',
+  //         message: 'Invalid response',
+  //       });
+  //     }
+
+  //     const checkQuestion = await pool.query(queries.searchAnswer, [questionId, answerId]);
+
+  //     if (checkQuestion.rows[0].userid === userId) {
+  //       const tapFavourite = await pool.query(queries.togglefavourite, [favourite, answerId]);
+
+  //       return res.status(201).json({
+  //         status: 'success',
+  //         message: 'Updated',
+  //         data: tapFavourite,
+  //       });
+  //     }
+  //     return res.status(404).json({
+  //       status: 'fail',
+  //       message: 'Question does not exist',
+  //     });
+  //   } catch (error) {
+  //     return res.status(500).json({
+  //       status: 'fail',
+  //       message: 'internal server error',
+  //       data: {
+  //         Error: error.message,
+  //       },
+  //     });
+  //   }
+  // }
 }
 
 export default QuesController;

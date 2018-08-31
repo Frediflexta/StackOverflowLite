@@ -16,28 +16,28 @@ const auth = async (req, res, next) => {
     const token = req.header('x-access-token');
     if (!token) {
       return res.status(401).json({
-        success: 'false',
-        message: 'Please sign in',
+        status: 'fail',
+        message: 'Please provide a token',
       });
     }
 
     return jwt.verify(token, secret, (error, decoded) => {
       if (error) {
         return res.status(401).json({
-          success: 'false',
-          message: 'You are logged out',
+          status: 'fail',
+          message: 'Invalid token',
         });
       }
 
       req.decoded = decoded;
       return next();
     });
-  } catch (e) {
+  } catch (error) {
     return res.status(500).json({
-      success: 'false',
+      status: 'fail',
       message: 'internal server error',
       data: {
-        Error: e.message,
+        Error: error.message,
       },
     });
   }

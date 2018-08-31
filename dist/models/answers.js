@@ -133,7 +133,7 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _config = require('../../config/config');
+var _config = require('../config/config');
 
 var _config2 = _interopRequireDefault(_config);
 

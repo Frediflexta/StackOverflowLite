@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import pool from '../../config/config';
+import pool from '../config/config';
 import queries from '../models/queries';
 
 dotenv.config();
@@ -15,7 +15,7 @@ class UserController {
   /**
    * @param {object} req -Request object
    * @param {object} res - Response object
-   * @return {json} res.json
+   * @return {object} res.json
    */
   static async userSignup(req, res) {
     try {
@@ -25,7 +25,7 @@ class UserController {
         password,
       } = req.body;
 
-      const trimedUsername = username.trim();
+      const trimedUsername = username.toLowerCase().trim();
       const trimedEmail = email.trim();
       const trimedPassword = password.trim();
 
@@ -40,14 +40,14 @@ class UserController {
       );
 
       return res.header('x-access-token', token).status(201).json({
-        success: 'true',
+        status: 'success',
         message: 'Account was successfully created',
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(406).json({
-        success: 'false',
+        status: 'fail',
         message: 'Email already exists',
-        Error: e.message,
+        Error: error.message,
       });
     }
   }
@@ -61,10 +61,10 @@ class UserController {
 
       const checkUser = await pool.query(queries.signIn, [username]);
 
-      if (checkUser.rowCount < 1) {
+      if (checkUser.rowCount === 0) {
         return res.status(400).json({
-          success: 'false',
-          message: 'Invalid login, please signup',
+          status: 'fail',
+          message: 'Please provide a valid username',
         });
       }
 
@@ -74,7 +74,7 @@ class UserController {
 
       if (!verifyPassword) {
         return res.status(400).json({
-          success: 'false',
+          status: 'fail',
           message: 'Invalid Password',
         });
       }
@@ -87,10 +87,10 @@ class UserController {
         success: 'true',
         message: 'Welcome back',
       });
-    } catch (e) {
+    } catch (error) {
       return res.status(406).json({
         success: 'false',
-        message: e.message,
+        message: error.message,
       });
     }
   }

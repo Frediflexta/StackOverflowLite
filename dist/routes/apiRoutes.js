@@ -114,15 +114,12 @@ var cov_ar66zcfe3 = function () {
 
   coverageData.hash = hash;
   return coverage[path] = coverageData;
-}();
+}(); // import express from 'express';
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
 
 var _auth = require('../middleware/auth');
 
@@ -142,7 +139,7 @@ var _quesController2 = _interopRequireDefault(_quesController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var router = (cov_ar66zcfe3.s[0]++, _express2.default.Router());
+var router = (cov_ar66zcfe3.s[0]++, express.Router());
 
 cov_ar66zcfe3.s[1]++;
 router.get('/questions', _quesController2.default.getAllQues);

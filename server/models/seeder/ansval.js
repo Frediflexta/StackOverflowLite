@@ -1,4 +1,4 @@
-import pool from '../../../config/config';
+import pool from '../../config/config';
 
 const text = `DELETE FROM answers CASCADE;
 INSERT INTO answers (userid, quesid, ansbody) VALUES
@@ -12,7 +12,7 @@ INSERT INTO answers (userid, quesid, ansbody) VALUES
 const insertAns = async () => {
   try {
     const res = await pool.query(text);
-    console.log(res);
+    console.log(text);
     return res;
   } catch (e) {
     throw e.message;

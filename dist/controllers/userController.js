@@ -2,7 +2,7 @@
 
 var cov_117zmxppl0 = function () {
   var path = 'C:\\Users\\hp\\Documents\\StackOverflowLite\\server\\controllers\\userController.js',
-      hash = '3dd6d79a2c9490f5d963db8f3d6b7a6963bf2e7d',
+      hash = 'aa1307364387c91c28d5101aed7242f44f361eba',
       Function = function () {}.constructor,
       global = new Function('return this')(),
       gcv = '__coverage__',
@@ -56,7 +56,7 @@ var cov_117zmxppl0 = function () {
         },
         end: {
           line: 28,
-          column: 44
+          column: 58
         }
       },
       '5': {
@@ -457,7 +457,7 @@ var _jsonwebtoken = require('jsonwebtoken');
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _config = require('../../config/config');
+var _config = require('../config/config');
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -489,7 +489,7 @@ var UserController = function () {
     /**
      * @param {object} req -Request object
      * @param {object} res - Response object
-     * @return {json} res.json
+     * @return {object} res.json
      */
     value: function () {
       var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
@@ -503,7 +503,7 @@ var UserController = function () {
                 cov_117zmxppl0.s[2]++;
                 _context.prev = 2;
                 _ref2 = (cov_117zmxppl0.s[3]++, req.body), username = _ref2.username, email = _ref2.email, password = _ref2.password;
-                trimedUsername = (cov_117zmxppl0.s[4]++, username.trim());
+                trimedUsername = (cov_117zmxppl0.s[4]++, username.toLowerCase().trim());
                 trimedEmail = (cov_117zmxppl0.s[5]++, email.trim());
                 trimedPassword = (cov_117zmxppl0.s[6]++, password.trim());
                 cov_117zmxppl0.s[7]++;
@@ -522,7 +522,7 @@ var UserController = function () {
                 token = (cov_117zmxppl0.s[10]++, _jsonwebtoken2.default.sign({ id: newUser.id }, secret, { expiresIn: '3h' }));
                 cov_117zmxppl0.s[11]++;
                 return _context.abrupt('return', res.header('x-access-token', token).status(201).json({
-                  success: 'true',
+                  status: 'success',
                   message: 'Account was successfully created'
                 }));
 
@@ -531,7 +531,7 @@ var UserController = function () {
                 _context.t0 = _context['catch'](2);
                 cov_117zmxppl0.s[12]++;
                 return _context.abrupt('return', res.status(406).json({
-                  success: 'false',
+                  status: 'fail',
                   message: 'Email already exists',
                   Error: _context.t0.message
                 }));
@@ -580,7 +580,7 @@ var UserController = function () {
                 cov_117zmxppl0.b[0][0]++;
                 cov_117zmxppl0.s[17]++;
                 return _context2.abrupt('return', res.status(400).json({
-                  success: 'false',
+                  status: 'fail',
                   message: 'Invalid login, please signup'
                 }));
 
