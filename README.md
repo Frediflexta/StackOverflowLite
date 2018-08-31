@@ -8,13 +8,20 @@ StackOverflowLite is a platform where people can ask questions and provide answe
 ## Documentation
 The hosted endpoint of this app hosted on heroku can be tested via postman
 Some available routes include,
-> On postman, send a GET request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/` to access all the questions on the database
-> Send a GET request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/<questionId>`
+* On postman, send a GET request to
+
+`https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/` to access all the questions on the database
+
+* Send a GET request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/<questionId>`
 to access a single question
-> Send a POST request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/` to create a question.
->Send a DELETE request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/<questionId>`
-> Send a POST request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/answers` to post an answer to the question
-> You can also sign up if you're a new user or signin for the returning guy.
+
+* Send a POST request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/` to create a question.
+
+* Send a DELETE request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/<questionId>`
+
+* Send a POST request to `https://freddie-stackoverflowlite.herokuapp.com/api/v1/questions/answers` to post an answer to the question
+
+* You can also sign up if you're a new user or signin for the returning guy.
 `https://freddie-stackoverflowlite.herokuapp.com/api/v1/auth/signup`
 `https://freddie-stackoverflowlite.herokuapp.com/api/v1/auth/login`
 
