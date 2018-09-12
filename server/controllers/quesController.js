@@ -24,10 +24,8 @@ class QuesController {
     } catch (error) {
       return res.status(500).json({
         status: 'fail',
-        message: 'Internal server error',
-        data: {
-          Error: error.message,
-        },
+        error: error.message,
+        message: 'internal server error',
       });
     }
   }
@@ -63,19 +61,15 @@ class QuesController {
         status: 'success',
         message: 'Retrieval successful',
         data: {
-          question: {
-            response: oneQuestion.rows[0],
-            answers: allAnswers.rows,
-          },
+          question: oneQuestion.rows[0],
+          answers: allAnswers.rows,
         },
       });
     } catch (error) {
       return res.status(500).json({
         status: 'fail',
+        error: error.message,
         message: 'internal server error',
-        data: {
-          Error: error.message,
-        },
       });
     }
   }
@@ -97,20 +91,6 @@ class QuesController {
       const trimedBody = quesbody.trim();
       const userId = req.decoded.id;
 
-      if (trimedTitle.trim() === '' || typeof trimedTitle !== 'string' || trimedTitle === undefined) {
-        return res.status(400).json({
-          status: 'fail',
-          message: 'Please add a title',
-        });
-      }
-
-      if (typeof trimedBody !== 'string' || trimedBody.trim() === '' || trimedBody === undefined) {
-        return res.status(400).json({
-          status: 'fail',
-          message: 'What is your question',
-        });
-      }
-
       const insertQues = await pool.query(queries.postQuestion, [userId, trimedTitle, trimedBody]);
 
       return res.status(201).json({
@@ -121,10 +101,8 @@ class QuesController {
     } catch (error) {
       return res.status(500).json({
         status: 'fail',
+        error: error.message,
         message: 'internal server error',
-        data: {
-          Error: error.message,
-        },
       });
     }
   }
@@ -149,7 +127,7 @@ class QuesController {
       const userId = req.decoded.id;
       const findQues = await pool.query(queries.findQuestion, [questionId]);
 
-      if (findQues.rowCount >= 1) {
+      if (findQues.rowCount === 1) {
         if (findQues.rows[0].userid === userId) {
           const deleted = await pool.query(queries.deleteQuestion, [questionId, userId]);
           return res.status(200).json({
@@ -157,12 +135,10 @@ class QuesController {
             message: 'Successfully deleted',
             data: deleted.rows[0],
           });
-        }
-
-        if (findQues.rows[0].userId !== userId) {
+        } else if (findQues.rows[0].userId !== userId) {
           return res.status(401).json({
             status: 'fail',
-            message: 'Unauthorized action',
+            message: 'This is not your question to delete',
           });
         }
       }
@@ -174,10 +150,8 @@ class QuesController {
     } catch (error) {
       return res.status(500).json({
         status: 'fail',
+        error: error.message,
         message: 'internal server error',
-        data: {
-          Error: error.message,
-        },
       });
     }
   }
@@ -237,68 +211,74 @@ class QuesController {
     } catch (error) {
       return res.status(500).json({
         status: 'fail',
+        error: error.message,
         message: 'internal server error',
-        data: {
-          Error: error.message,
-        },
       });
     }
   }
 
   /**
-   * Updates favourite answer of a question
+   * Updates favorite answer of a question
    * @static method
    * @param  {object} req - Request object
    * @param {object} res - Response object
    * @return {object} res.json
    */
-  // static async favouriteQuestion(req, res) {
-  //   try {
-  //     const questionId = Number(req.params.qId);
-  //     const answerId = Number(req.params.aId);
+  static async favouriteQuestion(req, res) {
+    try {
+      const questionId = Number(req.params.qId);
+      const answerId = Number(req.params.aId);
 
-  //     if (Number.isInteger(questionId) === false || Number.isInteger(answerId) === false) {
-  //       return res.status(400).json({
-  //         status: 'fail',
-  //         message: 'Invalid request',
-  //       });
-  //     }
+      if (Number.isInteger(questionId) === false || Number.isInteger(answerId) === false) {
+        return res.status(400).json({
+          status: 'fail',
+          message: 'Invalid request',
+        });
+      }
 
-  //     const userId = req.decoded.id;
-  //     const { favourite } = req.body;
+      const userId = req.decoded.id;
+      const { favorite } = req.body;
 
-  //     if (typeof favourite !== typeof 'boolean') {
-  //       return res.status(400).json({
-  //         status: 'fail',
-  //         message: 'Invalid response',
-  //       });
-  //     }
+      if (typeof favorite !== 'boolean') {
+        return res.status(400).json({
+          status: 'fail',
+          message: 'Invalid response',
+        });
+      }
 
-  //     const checkQuestion = await pool.query(queries.searchAnswer, [questionId, answerId]);
+      const checkQuestionAnswer = await pool.query(queries.searchQuesAns, [questionId, answerId]);
 
-  //     if (checkQuestion.rows[0].userid === userId) {
-  //       const tapFavourite = await pool.query(queries.togglefavourite, [favourite, answerId]);
+      if (checkQuestionAnswer.rowCount === 0) {
+        return res.status(404).json({
+          status: 'fail',
+          message: 'Question or answer does not exist',
+        });
+      }
 
-  //       return res.status(201).json({
-  //         status: 'success',
-  //         message: 'Updated',
-  //         data: tapFavourite,
-  //       });
-  //     }
-  //     return res.status(404).json({
-  //       status: 'fail',
-  //       message: 'Question does not exist',
-  //     });
-  //   } catch (error) {
-  //     return res.status(500).json({
-  //       status: 'fail',
-  //       message: 'internal server error',
-  //       data: {
-  //         Error: error.message,
-  //       },
-  //     });
-  //   }
-  // }
+      if (checkQuestionAnswer.rows[0].userid !== userId) {
+        const authenticateUser = await pool.query(queries.authUser, [questionId]);
+
+        if (authenticateUser.rows[0].userid === userId) {
+          const setFavorite = await pool.query(queries.preferedAns, [favorite, questionId, answerId]);
+          return res.status(205).json({
+            status: 'success',
+            message: 'Your prefered answer has been selected',
+            data: setFavorite.rows[0],
+          });
+        }
+      }
+      return res.status(401).json({
+        status: 'fail',
+        message: 'You can not pick a prefered answer',
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 'fail',
+        error: error.message,
+        message: 'internal server error',
+      });
+    }
+  }
 }
 
 export default QuesController;

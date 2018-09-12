@@ -9,8 +9,10 @@ const queries = {
   findQuestion: 'SELECT userid FROM questions WHERE id = $1',
   availableQues: 'SELECT * FROM questions WHERE id = $1',
   postAnswer: 'INSERT INTO answers (userid, quesid, ansbody) VALUES ($1, $2, $3) RETURNING *',
-  searchAnswer: 'SELECT ansbody FROM answers WHERE quesid = $1 AND id = $2',
-  togglefavourite: 'UPDATE answers SET favourite = $1 WHERE id = $2',
+  searchQuesAns: 'SELECT * FROM answers WHERE quesid = $1 AND id = $2',
+  authUser: 'SELECT userid FROM questions WHERE id = $1',
+  preferedAns: 'UPDATE answers SET favorite = $1 WHERE quesid = $2 AND id = $3 RETURNING *',
+  resetOtherfav: 'UPDATE answers SET favorite = false WHERE id <> $1',
 };
 
 export default queries;

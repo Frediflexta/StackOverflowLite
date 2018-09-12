@@ -46,8 +46,8 @@ class UserController {
     } catch (error) {
       return res.status(406).json({
         status: 'fail',
+        error: error.message,
         message: 'Email already exists',
-        Error: error.message,
       });
     }
   }
@@ -64,7 +64,7 @@ class UserController {
       if (checkUser.rowCount === 0) {
         return res.status(400).json({
           status: 'fail',
-          message: 'Please provide a valid username',
+          message: 'Username does not exist, Please sign up',
         });
       }
 
@@ -84,13 +84,14 @@ class UserController {
       }, secret, { expiresIn: '3h' });
 
       return res.header('x-access-token', token).status(200).json({
-        success: 'true',
+        status: 'success',
         message: 'Welcome back',
       });
     } catch (error) {
       return res.status(406).json({
-        success: 'false',
-        message: error.message,
+        status: 'fail',
+        error: error.message,
+        message: 'internal server error',
       });
     }
   }

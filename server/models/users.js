@@ -8,15 +8,12 @@ CREATE TABLE users (
   password    TEXT NOT NULL
 )`;
 
-console.log(text);
-
 const usersTab = async () => {
   try {
     const res = await pool.query(text);
-    console.log(res);
     return res;
-  } catch (e) {
-    throw e.message;
+  } catch (error) {
+    throw error.message;
   }
 };
 
