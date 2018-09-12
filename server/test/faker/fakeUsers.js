@@ -6,6 +6,11 @@ const userData = {
     email: 'teste@gmail.com',
     password: 'testpassword'
   },
+  signupUserII: {
+    username: 'testuserII',
+    email: 'another@gmail.com',
+    password: 'testpassword'
+  },
   namelesSignup: {
     username: '',
     email: faker.internet.email(),
@@ -43,12 +48,27 @@ const userData = {
   badQuesIII: {
     questitle: '',
     quesbody: undefined
-  },goodAns: {
+  },
+  goodAns: {
     ansbody: faker.lorem.sentence()
   },
   badAns:{
     ansbody: ''
-  }
+  },
+  preferedUser: {
+    username: 'TestUserII',
+    email: 'tester@gmail.com',
+    password: 'tested'
+  },
+  preferedUserAns: {
+    ansbody: faker.lorem.sentence()
+  },
+  preferedAnswer: {
+    favorite: true
+  },
+  preferedAnswerBad: {
+    favorite: 'true'
+  },
 }
 
 export default userData;

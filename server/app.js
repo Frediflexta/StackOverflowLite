@@ -21,9 +21,7 @@ app.use('/api/v1', routes);
 app.all('*', (req, res) => {
   res.status(404).json({
     status: 'fail',
-    data: {
-      message: 'Endpoint does not exist',
-    },
+    message: 'Endpoint does not exist',
   });
 });
 

@@ -14,10 +14,9 @@ INSERT INTO users (username, email, password) VALUES
 const insertUser = async () => {
   try {
     const res = await pool.query(text);
-    console.log(res);
     return res;
-  } catch (e) {
-    throw e.message;
+  } catch (error) {
+    throw error.message;
   }
 };
 

@@ -13,10 +13,9 @@ CREATE TABLE questions (
 const quesTab = async () => {
   try {
     const res = await pool.query(text);
-    console.log(res);
     return res;
-  } catch (e) {
-    throw e.message;
+  } catch (error) {
+    throw error.message;
   }
 };
 

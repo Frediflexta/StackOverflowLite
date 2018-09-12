@@ -11,3 +11,5 @@ setTimeout(ansTab, 1000);
 setTimeout(userval,1500);
 setTimeout(quesval, 2000);
 setTimeout(ansval, 2500);
+
+console.log('Setting Up Database...');
