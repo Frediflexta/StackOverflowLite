@@ -92,16 +92,6 @@ header #btn-search:hover {
   padding-top: 5em;
 }
 
-/**showcase writeup */
-/* aside {
-  width: 30%;
-  font-size: 1.3em;
-  padding: 0.2em 0 2em 4em;
-  color: white;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.822);
-  opacity: inherit;
-} */
-
 /** header styling*/
 .h-content {
   display: grid;
@@ -139,7 +129,7 @@ header #btn-search:hover {
   margin: 0.5em;
 }
 
-#ask button{
+#ask button {
   font: bold 13px Nunito, Helvetica, Arial, sans-serif;
   background-color: #0000EE;
   color: white;
@@ -209,13 +199,20 @@ header #btn-search:hover {
 /*forms*/
 #login-header {
   width: 40%;  
-  margin: 2em 5em 1em 25em;
-  justify-content: baseline;  
+  margin: 1em 5em 1em 25em;
   text-align: center;
-  border: 2px solid rgb(228, 231, 235);
+  border: 1px solid rgb(228, 231, 235);
   background-color: white;
   border-radius: 4px;
 }
+
+#signup-error {
+color: red;
+}
+
+#signup-success {
+  color: green;
+  }
 
 .form-field {
   display: grid;
