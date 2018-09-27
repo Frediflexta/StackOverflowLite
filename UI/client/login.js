@@ -1,13 +1,12 @@
-const signupFrom = document.querySelector('#signupBtn');
+const loginFrom = document.querySelector('#loginBtn');
 
-const signup = (event) => {
+const login = (event) => {
   const username = document.querySelector('#username');
-  const email = document.querySelector('#email');
   const password = document.querySelector('#password');
-  const signupHeader = document.querySelector('#login-h');
+  const loginHeader = document.querySelector('#login-h');
 
   event.preventDefault();
-  const url = '/api/v1/auth/signup';
+  const url = '/api/v1/auth/login';
   fetch(url, {
     method: 'POST',
     headers: {
@@ -15,7 +14,6 @@ const signup = (event) => {
     },
     body: JSON.stringify({
       username: username.value,
-      email: email.value,
       password: password.value,
     }),
   })
@@ -24,8 +22,9 @@ const signup = (event) => {
       if (res.status === 'success') {
         const token = `${res.token}`;
         localStorage.setItem('x-access-token', token);
-        const successHeader = `<h3 id='signup-success'>${res.message}</h3>`;
-        signupHeader.insertAdjacentHTML('afterend', successHeader);
+        let successHeader = '';
+        successHeader = `<h3 id='signup-success'>${res.message}</h3>`;
+        loginHeader.insertAdjacentHTML('afterend', successHeader);
         setTimeout(() => {
           document.location.replace('homepage.html');
         }, 2000);
@@ -34,11 +33,11 @@ const signup = (event) => {
       if (res.status === 'fail') {
         throw new Error(`${res.message}`);
       }
-    })
-    .catch((error) => {
-      const htmlContent = `<h3 id='signup-error'>${error.message}</h3>`;
-      signupHeader.insertAdjacentHTML('afterend', htmlContent);
+    }).catch((error) => {
+      let htmlContent = '';
+      htmlContent = `<h3 id='signup-error'>${error.message}</h3>`;
+      loginHeader.insertAdjacentHTML('afterend', htmlContent);
     });
 };
 
-signupFrom.addEventListener('click', signup);
+loginFrom.addEventListener('click', login);

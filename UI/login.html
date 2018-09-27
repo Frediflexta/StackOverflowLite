@@ -37,28 +37,22 @@
         </div>
       </div>
       <div class="form-content">
-        <form action="homepage.html">
+        <form method="POST">
           <div class="form-field">
             <div class="label-username">
               <label for="display-name" class="display">Username</label>
             </div>
             <div class="in-username">
-              <input type="text" name="inline-display-name" placeholder="Frediflexta" required>
-            </div>
-            <div class="label-email">
-              <label for="display-email" class="display">Email</label>
-            </div>
-            <div class="in-email">
-              <input type="email" name="inline-email" placeholder="you@emaple.com" required>
+              <input type="text" name="inline-display-name" id="username" placeholder="Frediflexta" required>
             </div>
             <div class="label-password">
               <label for="display-password" class="display">Password</label>
             </div>
             <div class="in-password">
-              <input type="password" name="inline-password" placeholder="*******" minlength="6" maxlength="12" required>
+              <input type="password" name="inline-password" id="password" placeholder="*******" minlength="6" maxlength="12" required>
             </div>
             <div class="btn-login">
-              <button>Login</button>
+              <button id="loginBtn">Login</button>
             </div>
           </div>
           <div class="formtext">
@@ -73,5 +67,6 @@
     <p>StackOverflowLite&copy; 2018</p>
   </footer>
   <script src="./js/main.js"></script>
+  <script src="/UI/client/login.js"></script>
 </body>
 </html>

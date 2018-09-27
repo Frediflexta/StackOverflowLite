@@ -42,6 +42,7 @@ class UserController {
       return res.header('x-access-token', token).status(201).json({
         status: 'success',
         message: 'Your Account has been created',
+        token,
       });
     } catch (error) {
       return res.status(406).json({
@@ -86,6 +87,7 @@ class UserController {
       return res.header('x-access-token', token).status(200).json({
         status: 'success',
         message: 'Welcome back',
+        token,
       });
     } catch (error) {
       return res.status(406).json({
