@@ -13,9 +13,13 @@ ul {
   list-style: none;
 }
 
-*:focus {
+.in-details:focus {
   outline: none;
 }
+
+/* html {
+  overflow: hidden;
+} */
 
 /* * {
   background: #000 !important;

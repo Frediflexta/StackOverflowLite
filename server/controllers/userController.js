@@ -36,12 +36,12 @@ class UserController {
       const token = jwt.sign(
         { id: newUser.id },
         secret,
-        { expiresIn: '3h' },
+        { expiresIn: '24h' },
       );
 
       return res.header('x-access-token', token).status(201).json({
         status: 'success',
-        message: 'Account was successfully created',
+        message: 'Your Account has been created',
       });
     } catch (error) {
       return res.status(406).json({

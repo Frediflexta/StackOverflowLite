@@ -36,35 +36,38 @@
           <h1>Register With Us!</h1>
         </div>
       </div>
+      <!-- <section id="signup-error">
+        <p>An Error occured!</p>
+      </section> -->
       <div class="form-content">
-        <form action="homepage.html">
+        <form method="POST">
           <div class="form-field">
             <div class="label-username">
               <label for="display-name" class="display">Username</label>
             </div>
             <div class="in-username">
-              <input type="text" name="inline-display-name" placeholder="Frediflexta" required>
+              <input type="text" id="username" name="inline-display-name" placeholder="Frediflexta" required>
             </div>
             <div class="label-email">
               <label for="display-email" class="display">Email</label>
             </div>
             <div class="in-email">
-              <input type="email" name="inline-email" placeholder="you@emaple.com" required>
+              <input type="email" name="inline-email" id="email" placeholder="you@emaple.com" required>
             </div>
             <div class="label-password">
               <label for="display-password" class="display">Password</label>
             </div>
             <div class="in-password">
-              <input type="password" name="inline-password" placeholder="*******" minlength="6" maxlength="12" required>
+              <input type="password" name="inline-password" id="password" placeholder="*******" minlength="6" maxlength="12" required>
             </div>
-            <div class="label-password">
+            <!-- <div class="label-password">
               <label for="display-password" class="display">Confirm</label>
             </div>
             <div class="in-password">
-              <input type="password" name="inline-password" placeholder="*******" minlength="6" maxlength="12" required>
-            </div>
+              <input type="password" name="inline-password" id="confrim-password" placeholder="*******" minlength="6" maxlength="12" required>
+            </div> -->
             <div class="btn-login">
-              <button>Register</button>
+              <button id="signupBtn">Register</button>
             </div>
           </div>
           <div class="formtext">
@@ -79,5 +82,6 @@
     <p>StackOverflowLite&copy; 2018</p>
   </footer>
   <script src="./js/main.js"></script>
+  <script src="/UI/client/signup.js"></script>
 </body>
 </html>
