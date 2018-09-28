@@ -207,12 +207,21 @@ header #btn-search:hover {
 }
 
 #signup-error {
-color: red;
+  color: red;
 }
 
 #signup-success {
   color: green;
-  }
+}
+
+.error-no-image {
+  background: url(https://www.featurepics.com/FI/Thumb300/20080114/Red-Error-575642.jpg)no-repeat 50%;
+  color: orangered;
+  font-weight: bold;
+  margin-bottom: 3em;
+  padding-top: 8em;
+  text-align: center;
+}
 
 .form-field {
   display: grid;
@@ -370,7 +379,8 @@ color: red;
 }
 
 .how-to h3, p {
-  margin: 1em;
+  margin: 0.5em;
+  color: #604017;
 }
 
 
