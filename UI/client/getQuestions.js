@@ -15,7 +15,7 @@ const loadQuestions = () => {
 
         if (questions.length > 1) {
           questions.forEach((question) => {
-            const questionUrl = `/api/v1/questions/${question.id}`;
+            const questionUrl = `/questions/${question.id}`;
             htmlContent += `<div class="content-container">
               <div class="votes">
                 <div class="v-counts">
@@ -30,7 +30,7 @@ const loadQuestions = () => {
               <div class="quote">answers</div>
             </div>
             <div class="ques-details">
-              <h3><a href="${questionUrl}">${question.questitle}</a></h3>
+              <h3><a href=${questionUrl}>${question.questitle}</a></h3>
               <p>${question.quesbody}</p>
             </div>
           </div>`;
@@ -40,7 +40,8 @@ const loadQuestions = () => {
       } else if (res.status === 'fail') {
         throw new Error(`${res.message}`);
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       let htmlContent = '';
       htmlContent = `<div class="error-no-image">Sorry! ${error.message} (${error.error})</div>`;
       contentHeader.insertAdjacentHTML('afterend', htmlContent);

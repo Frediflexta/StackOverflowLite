@@ -12,6 +12,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use((bodyParser.urlencoded({ extended: false })));
 app.use('/UI', express.static(path.resolve(__dirname, './../UI/')));
+app.use('/CSS', express.static(path.resolve(__dirname, './../UI/CSS/')));
 app.use('/js', express.static(path.resolve(__dirname, './../UI/js/')));
 
 app.get('/api/v1', (req, res) => {
@@ -23,6 +24,10 @@ app.get('/api/v1', (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, './../UI/index.html'));
+});
+
+app.get('/questions/:qId', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './../UI/answers.html'));
 });
 
 app.use('/api/v1', routes);
