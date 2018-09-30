@@ -30,41 +30,32 @@
     </div>
   </header>
   <main>
-    <!-- <section id="showcase"> -->
-      <!-- background image-->
-      <!-- <img src="./img/stackflow.jpg" alt="">
-      <aside>
-        <h1>Learn, Share, Build</h1>
-        <p>Each month, over millions of developers come to StackOverflowLite to learn, share their knowledge, and build their collaborative relationships.</p>
-        <p>Join a growing community developers.</p>
-      </aside>
-    </section> -->
     <section id="ques-container">
       <div class="ques-body">
-        <div id="ques-header">
-          <div class="title">
-            <label for="display-name" class="display">Title</label>
-          </div>
-          <div class="ques-title">
-            <input type="text" name="inline-display-name" placeholder="What's your question title? Please be specific" required>
-          </div>
-        </div>
-        <form action="#">
-          <div class="body">
-            <div class="title">
-              <label for="display-name" class="display">Body</label>
+        <form method="POST">
+          <div id="ques-header">
+              <div class="title">
+                <label for="display-name" class="display">Title</label>
+              </div>
+              <div class="ques-title">
+                <input type="text" name="inline-display-name" id="question-title" placeholder="What's your question title? Please be specific" required>
+              </div>
             </div>
-            <textarea name="question-body" id="" cols="50" rows="10"></textarea>
-          </div>
-          <div id="post-ques">
-            <button class="post">Post Question</button>
-          </div>
+            <div class="body">
+                <div class="title">
+                  <label for="display-name" class="display">Body</label>
+                </div>
+                <textarea name="question-body" id="ques-body" cols="50" rows="10"></textarea>
+              </div>
+              <div id="post-ques">
+                <button class="post" id="postQuesBtn">Post Question</button>
+              </div>
         </form>
       </div>
       <div class="how-to">
         <h3>How to Ask</h3>
-        <p>We prefer questions that can be answered, not just discussed</p>
-        <p>Please provide details. Share your research</p>
+        <p class="how-to-p">We prefer questions that can be answered, not just discussed</p>
+        <p class="how-to-p">Please provide details. Share your research</p>
       </div>
     </section>
   </main>
@@ -72,5 +63,6 @@
     <p style="color:#848d95">StackOverflowLite&copy; 2018</p>
   </footer>
   <script src="./js/main.js"></script>
+  <script src="/UI/client/postQuestion.js"></script>
 </body>
 </html>

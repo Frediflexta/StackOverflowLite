@@ -376,14 +376,18 @@ header #btn-search:hover {
 .how-to {
   grid-column: 2 / -1;
   border-radius: 5px;
-  background-color: #63A71F;
+  background-color: #474e53;
   width: 80%;
   height: 60%;
 }
-
-.how-to h3, p {
+.how-to-p, h3 {
   margin: 0.5em;
-  color: #604017;
+  color: whitesmoke;
+}
+
+p {
+  margin: 0.5em;
+  color: #474e53;
 }
 
 .user-tag {
@@ -499,6 +503,10 @@ section .ans-votes-container {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+#btn-ask:focus {
+  outline: none;
 }
 
 #Questions h4 {
@@ -667,6 +675,12 @@ footer {
     margin: 1em 1em 1em 1em;
     padding: 1em;
   }
+
+  #ques-container > h3 {
+    color: goldenrod;
+  }
+
+
 
   .how-to {
     grid-column: 1 / -1;
