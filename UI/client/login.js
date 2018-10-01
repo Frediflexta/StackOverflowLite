@@ -21,6 +21,8 @@ const login = (event) => {
     .then((res) => {
       if (res.status === 'success') {
         const token = `${res.token}`;
+        const userId = `${res.data.userId}`;
+        localStorage.setItem('current-user-id', userId);
         localStorage.setItem('x-access-token', token);
         let successHeader = '';
         successHeader = `<h3 id='signup-success'>${res.message}</h3>`;
