@@ -4,6 +4,16 @@ const urlId = window.location.pathname;
 const url = `/api/v1${urlId}`;
 
 const loadSingleQuestion = () => {
+  const answerContainer = document.querySelector('#answers-container');
+  const userId = localStorage.getItem('current-user-id');
+  const currentUserId = localStorage.getItem('question-user-id');
+
+  if (userId === currentUserId) {
+    let elementContent = '';
+    elementContent += '<button id="delete-question" class="deleteBtn">Delete</button>';
+    answerContainer.insertAdjacentHTML('beforebegin', elementContent);
+  }
+
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -12,6 +22,8 @@ const loadSingleQuestion = () => {
     .then(res => res.json())
     .then((res) => {
       if (res.status === 'success') {
+        const ownerQuestion = `${res.data.question.userid}`;
+        localStorage.setItem('question-user-id', ownerQuestion);
         let htmlQuestionContent = '';
         let htmlAnswerContent = '';
         const { question } = res.data;

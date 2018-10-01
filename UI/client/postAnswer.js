@@ -40,7 +40,7 @@ const answerBody = (event) => {
     })
     .catch((error) => {
       let htmlContent = '';
-      htmlContent = `<div class="error-no-image">Sorry! ${error.message} (${error.error})</div>`;
+      htmlContent = `<div class="error-no-image">Sorry! ${error.message}</div>`;
       answerContainer.insertAdjacentHTML('beforebegin', htmlContent);
     });
 };

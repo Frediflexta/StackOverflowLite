@@ -364,6 +364,17 @@ header #btn-search:hover {
   border-radius: 5px;
 }
 
+#delete-question {
+  width: 15%;
+  margin: 2em;
+  background-color: #e5260ecc;
+  color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .body textarea {
   margin: 1em 12em 1em 0;
   width: 80%;
@@ -371,6 +382,7 @@ header #btn-search:hover {
   padding: 8px;
   border: 1px solid grey;
   border-radius: 5px;
+  resize: none;
 }
 
 .how-to {
@@ -505,7 +517,7 @@ section .ans-votes-container {
   cursor: pointer;
 }
 
-#btn-ask:focus {
+button:focus {
   outline: none;
 }
 

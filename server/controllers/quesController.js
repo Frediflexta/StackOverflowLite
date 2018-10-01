@@ -132,13 +132,13 @@ class QuesController {
           const deleted = await pool.query(queries.deleteQuestion, [questionId, userId]);
           return res.status(200).json({
             status: 'success',
-            message: 'Successfully deleted',
+            message: 'Question has been successfully deleted',
             data: deleted.rows[0],
           });
         } else if (findQues.rows[0].userId !== userId) {
           return res.status(401).json({
             status: 'fail',
-            message: 'This is not your question to delete',
+            message: 'You are not allowed to delete this question',
           });
         }
       }

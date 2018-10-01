@@ -21,13 +21,11 @@ const questionBody = (event) => {
   })
     .then(res => res.json())
     .then((res) => {
-      console.log(res.message);
       if (res.status === 'success') {
         const posetedQuestion = res;
         quesTitle.value = '';
         quesBody.value = '';
         let successMessage = '';
-
         successMessage += `<h4>${posetedQuestion.message}</h4>`;
         postSuccessMsg.insertAdjacentHTML('afterbegin', successMessage);
       } else if (res.status === 'fail') {

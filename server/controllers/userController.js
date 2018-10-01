@@ -42,6 +42,9 @@ class UserController {
       return res.header('x-access-token', token).status(201).json({
         status: 'success',
         message: 'Your Account has been created',
+        data: {
+          userId: insert.rows[0].id,
+        },
         token,
       });
     } catch (error) {
@@ -80,13 +83,18 @@ class UserController {
         });
       }
 
-      const token = jwt.sign({
-        id: foundUser.id,
-      }, secret, { expiresIn: '3h' });
+      const token = jwt.sign(
+        { id: foundUser.id },
+        secret,
+        { expiresIn: '24h' },
+      );
 
       return res.header('x-access-token', token).status(200).json({
         status: 'success',
-        message: 'Welcome back',
+        message: 'Welcome back...',
+        data: {
+          userId: checkUser.rows[0].id,
+        },
         token,
       });
     } catch (error) {
